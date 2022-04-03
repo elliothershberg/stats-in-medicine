@@ -13,49 +13,127 @@ Notes from Unit 1: Descriptive Statistics and Looking at Data
 
 ### Types of data (in medicine)
 
-- Quantitative
-- Categorical (nominal or ordinal)
-  - binary
-  - nomimal (unordered categories)
-  - ordinal (ordered categories)
-- Time-to-event
-  - the time it takes for an event to occur (if it occurs at all)
-  - binary part (yes/no)
-  - continuous part (time)
-  
+-   Quantitative
+-   Categorical (nominal or ordinal)
+    -   binary
+    -   nomimal (unordered categories)
+    -   ordinal (ordered categories)
+-   Time-to-event
+    -   the time it takes for an event to occur (if it occurs at all)
+    -   binary part (yes/no)
+    -   continuous part (time)
+
 ### Visualizing data
 
-- Always plot your data
-  - identify errors
-  - see distributions
-- Frequency plots (univariate)
-  - bar charts
-  - histograms
-  - boxplots (how to draw whiskers and outliers)
-- Shapes of distributions
-  - normal distribution
+-   Always plot your data
+    -   identify errors
+    -   see distributions
+-   Frequency plots (univariate)
+    -   bar charts
+    -   histograms
+    -   boxplots (how to draw whiskers and outliers)
+-   Shapes of distributions
+    -   normal distribution
 
 ### Describing quantitative data: where is the center?
 
-- Measures of central tendency
-  - mean
-    - it is like a balancing point. The farther away from the mean, the more a value will affect the mean.
-    - binary variables have means
-  - median (middle value of ordered data)
-  - Overview of Wilcoxon Rank-Sum Test
-    - Rank two sets of values
-    - sum the ranks for each set
-    - compare
+-   Measures of central tendency
+    -   mean
+        -   it is like a balancing point. The farther away from the mean, the more a value will affect the mean.
+        -   binary variables have means
+    -   median (middle value of ordered data)
+    -   Overview of Wilcoxon Rank-Sum Test
+        -   Rank two sets of values
+        -   sum the ranks for each set
+        -   compare
 
 ### Describing quantitative data: standard deviation, percentiles
 
-- range
-- standard deviation/variance
-  - most common measure of variability in statistics
-  - variance is the average squared distance from the mean
-  - standard deviation is the square root of the variance
-  - standard error measures the variability of a statistic
-- percentiles
-- interquartile range
-- degrees of freedom: the number of values in the final calculation of a statistic that are free to vary.
+-   range
+-   standard deviation/variance
+    -   most common measure of variability in statistics
+    -   variance is the average squared distance from the mean
+    -   standard deviation is the square root of the variance
+    -   standard error measures the variability of a statistic
+-   percentiles
+-   interquartile range
+-   degrees of freedom: the number of values in the final calculation of a statistic that are free to vary.
+
+$$
+S^2 = \frac{\sum(x_i - \bar x)^2}{n - 1}
+$$
+
+### Homework
+
+```{r sleep-data}
+sleep_data <- rep(c(5, 6, 7, 8, 9, 10), times = c(3, 8, 20, 11, 6, 2))
+```
+
+
+1.  
+
+```{r problem-1}
+sleep_sum <- 5*3 + 6*8 + 7*20 + 8*11 + 9*6 + 10*2
+
+sleep_mean <- sleep_sum / 50
+
+sleep_mean
+```
+
+2.  
+
+```{r problem-2}
+squared_dist <- function(x, m = sleep_mean) {
+  (x - m)^2
+}
+
+sleep_variance <- (3*squared_dist(5) + 8*squared_dist(6) + 20*squared_dist(7) + 11*squared_dist(8) + 6*squared_dist(9) + 2*squared_dist(10)) / 49
+
+standard_dev <- sqrt(sleep_variance)
+
+standard_dev
+```
+
+7.
+
+```{r problem-7}
+coin_mean <- (0*47 + 1*53) / 100
+
+coin_mean
+```
+
+8.
+
+```{r problem-8}
+coin_vec <- rep(c(0, 1), times = c(47, 53))
+
+sd(coin_vec)
+```
+
+I need to load class data for the last 3 problems.
+
+```{r load-class-data}
+library(readxl)
+
+class_data <- read_excel("data/classdata.xlsx")
+```
+
+
+17.
+
+```{r problem-17}
+sd(class_data$fruitveg)
+```
+
+18.
+
+```{r problem-18}
+median(class_data$fruitveg)
+```
+
+19.
+
+```{r problem-19}
+hist(class_data$coffee, breaks = 7)
+```
 
