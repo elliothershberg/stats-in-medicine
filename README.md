@@ -1,5 +1,3 @@
 # Statistics in Medicine
 
-A [workflowr][] project.
-
-[workflowr]: https://github.com/workflowr/workflowr
+A [workflowr](https://github.com/workflowr/workflowr) project.
