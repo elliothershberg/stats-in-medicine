@@ -1,0 +1,61 @@
+---
+title: "module-1"
+author: "elliothershberg"
+date: "2022-04-02"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+Notes from Unit 1: Descriptive Statistics and Looking at Data
+
+### Types of data (in medicine)
+
+- Quantitative
+- Categorical (nominal or ordinal)
+  - binary
+  - nomimal (unordered categories)
+  - ordinal (ordered categories)
+- Time-to-event
+  - the time it takes for an event to occur (if it occurs at all)
+  - binary part (yes/no)
+  - continuous part (time)
+  
+### Visualizing data
+
+- Always plot your data
+  - identify errors
+  - see distributions
+- Frequency plots (univariate)
+  - bar charts
+  - histograms
+  - boxplots (how to draw whiskers and outliers)
+- Shapes of distributions
+  - normal distribution
+
+### Describing quantitative data: where is the center?
+
+- Measures of central tendency
+  - mean
+    - it is like a balancing point. The farther away from the mean, the more a value will affect the mean.
+    - binary variables have means
+  - median (middle value of ordered data)
+  - Overview of Wilcoxon Rank-Sum Test
+    - Rank two sets of values
+    - sum the ranks for each set
+    - compare
+
+### Describing quantitative data: standard deviation, percentiles
+
+- range
+- standard deviation/variance
+  - most common measure of variability in statistics
+  - variance is the average squared distance from the mean
+  - standard deviation is the square root of the variance
+  - standard error measures the variability of a statistic
+- percentiles
+- interquartile range
+- degrees of freedom: the number of values in the final calculation of a statistic that are free to vary.
+
