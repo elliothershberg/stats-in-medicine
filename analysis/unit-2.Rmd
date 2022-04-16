@@ -1,0 +1,131 @@
+---
+title: "unit-2"
+author: "elliothershberg"
+date: "2022-04-06"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+Notes from Unit 2: Review of Study Designs, Measures of Disease Risk and Association
+
+## Lab
+
+```{r load-tidyverse}
+library(tidyverse)
+```
+
+```{r load-data}
+car_data <- read_csv("data/injury-results.csv")
+
+summary(car_data)
+```
+
+Fix the character column for rate:
+
+```{r numeric-rate}
+car_data$rate <- as.numeric(car_data$`Age-Adjusted Rate`)
+```
+
+Plot year vs. rate:
+
+```{r plot-rate}
+plot(x = car_data$Year, y = car_data$rate)
+lines(x = car_data$Year, y = car_data$rate, type = "l")
+```
+
+```{r plot-ggplot}
+ggplot(car_data, aes(x = Year, y = rate)) +
+  geom_point() +
+  geom_line()
+```
+
+## Homework
+
+1.
+
+```{r problem-1}
+men_incidence <- 34 / 2.4e6
+women_incidence <- 6 / 1.5e6
+
+# absolute difference in the incidence rates per 100,000 person-races
+diff <- (men_incidence * 10e5) - (women_incidence * 10e5)
+
+round(diff, digits = 1)
+```
+
+
+2.
+
+```{r problem-2}
+ratio <- men_incidence / women_incidence
+
+round(ratio, digits = 1)
+```
+
+3.
+
+```{r problem-3}
+# Number of heart attacks in terms of 1 million people:
+run_risk <- 34 / 2.4
+
+risk_diff <- run_risk - 1
+
+1e6 / risk_diff
+```
+
+4.
+
+Converting odds ratio to risk ratio.
+
+```{r problem-4}
+risk_ratio <- 19.7 / ((1 - 0.04) + (0.04 * 19.7))
+
+risk_ratio
+```
+
+7.
+
+```{r problem-7}
+fat_risk_ratio <- 25 / 17
+
+fat_risk_ratio
+```
+
+8.
+
+```{r problem-8}
+normal_odds <- 17 / (100 - 17)
+
+fat_odds <- 25 / (100 - 25)
+
+fat_odds_ratio <- fat_odds / normal_odds
+
+fat_odds_ratio
+```
+
+9.
+
+```{r problem-9}
+copd_rr <- 5.7 / ( (1 - 0.17) + (0.17 * 5.7) )
+
+
+copd_rr * 0.17
+```
+
+10.
+
+```{r problem-10}
+drowning_df <- read_csv("data/drowning-data.csv")
+
+drowning_df$rate <- as.numeric(drowning_df$`Age-Adjusted Rate`)
+
+ggplot(drowning_df, aes(x = Year, y = rate)) +
+  geom_point() +
+  geom_line()
+```
+
+
+
