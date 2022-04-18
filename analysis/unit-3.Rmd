@@ -1,0 +1,185 @@
+---
+title: "unit-3"
+author: "elliothershberg"
+date: "2022-04-16"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Bayes Problems
+
+We know the overall formula is:
+
+$$
+P(A|B)=\frac{P(A \cap B)}{P(B)}=\frac{P(B|A)P(A)}{P(B)}
+$$
+
+Some examples:
+
+An insurance company categorizes 30% of drivers as high-risk and 70% as low-risk. High-risk drivers have a 10% chance of having an accident in a one-year period. Low-risk drivers have a 5% chance. What is the chance that a randomly selected driver is a high-risk driver?
+
+```{r insurance-1}
+high_risk_chance <- 0.3
+```
+
+An insurance company categorizes 30% of drivers as high-risk and 70% as low-risk. High-risk drivers have a 10% chance of having an accident in a one-year period. Low-risk drivers have a 5% chance. What is the marginal (overall) probability of having an accident?
+
+```{r insurance-2}
+marginal_accident <- 0.3 * .10 + 0.7 * 0.05
+```
+
+An insurance company categorizes 30% of drivers has high-risk drivers and 70% as low-risk drivers. High-risk drivers have a 10% chance of having an accident in a one-year period. Low-risk drivers have a 5% chance. If a driver has an accident, what is the probability that they are a high-risk driver?
+
+```{r insurance-3}
+p_high_risk <- (0.1 * 0.3) / marginal_accident
+```
+
+## Unit 3 R Lab
+
+Birthday simulation
+
+```{r compute-days}
+days <- sample(365, size = 30, replace = TRUE)
+
+table(days)
+```
+
+Check for pairs.
+
+```{r birthday-pairs}
+any(table(days) > 1)
+```
+
+Now to simulate this many times.
+
+```{r birthday-sim}
+sim_size <- 1e5
+
+matches <- vector("logical", sim_size)
+for (i in 1:sim_size) {
+  days <- sample(365, size = 30, replace = TRUE)
+  matches[[i]] <- any(table(days) > 1)
+}
+```
+
+And the resulting number of times:
+
+```{r sim-result}
+sum(matches) / sim_size
+```
+
+## Unit 3 Homework
+
+1.
+
+About 4% of pregnant women will have twins. About 10% of non-twins will be born prematurely and 60% of twins will be born prematurely. What is the total (overall) probability that a pregnant woman will experience a premature birth? Enter the percentage as a whole number and do not include the percent sign.
+
+```{r hw-1}
+p_premature <- (0.04 * .60) + (0.96 * 0.1)
+
+p_premature
+```
+
+2.
+
+In a certain lottery, you must choose three numbers: any number between 1 and 10; any number between 1 and 20; and any number between 1 and 30. Numbers may repeat and order matters (e.g., 5-5-5 is allowed; and 5-9-30 is different than 9-5-30). How many different lottery picks are there? Enter as a whole number.
+
+```{r hw-2}
+10 * 20 * 30
+```
+
+3.
+
+Suppose that a man lies 80% of the time. If the man tells you 4 “facts,” what’s the probability that at least one of these is a lie? Round to 1 decimal place and enter as a percentage without the percent sign.
+
+```{r hw-3}
+p_lie <- 1 - 0.2^4
+
+p_lie
+```
+
+4.
+
+According to a recent study, 88 percent of patients who receive a heart transplant in the U.S. survive at least 1 year after the surgery and 75 percent survive at least 5 years. If a heart transplant patient survives the first year after transplantation, what’s the chance that she will survive 5 years or more? Enter your answer as a whole number and do not include the percent sign.
+
+P(survive 5 | survive 1) =  P(survive 1 AND survive 5) / P(survive 1)
+
+```{r hw-4}
+0.75 / 0.88
+```
+
+5.
+
+A non-invasive pregnancy screening test for Trisomy 21 (Down’s Syndrome) that uses cell-free DNA from the mother’s blood has a sensitivity of 100% and a specificity of 99.9%. What is the positive predictive value of the test if the prevalence of Trisomy 21 in the screened population is 25 per 10,000? Enter as a whole number and do not include the percent sign.
+
+PPV = P(Down's | test+ ) = P(test+ | Down's) * P(Down's) / P(test+)
+
+```{r hw-5}
+p_pos_test <- (25/10000) * 1 + (1-25/10000)*(1-0.999)
+
+downs_ppv <- (1 * (25 / 10000) ) / p_pos_test
+
+downs_ppv
+```
+
+6.
+
+In the early 1980s, hemophiliacs received reconstituted clotting factor concentrates derived from human blood. The concentrates were pooled from the blood of about 1000 donors per lot. If the prevalence of hepatitis C in donor blood in the early 1980s was 1 in 1000, what was the probability that a hemophiliac would contract hepatitis C from a single infusion of clotting factors? Enter as a percentage but do not include the percent sign; round to 1 decimal place.
+
+```{r hw-6}
+p_hep_c <- 1 - (1 - 1/ 1000)^1000
+
+p_hep_c
+```
+
+7.
+
+A bag contains 100 Hershey’s kisses, 20 of which have star stickers on the bottom. If a child reaches in and picks out two chocolates, what is the probability that neither chocolate will have a star on the bottom? Enter as a percentage without the percent sign; round to one decimal place.
+
+```{r hw-7}
+p_no_choc <- (20 / 100) * (20 / 100)
+
+p_no_choc
+```
+
+8.
+
+If you roll 10 dice, what is the probability that the same number will come up on at least 5 dice?
+
+(Hint: you can modify the code provided for solving the birthday problems as the basis for this simulation; instead of 365 birthdays, there are 6 possible rolls of a die.) Enter as a percent without the percentage sign; round to one decimal place.
+
+```{r hw-8}
+dice_sim_size <- 1e5
+
+dice_matches <- vector("logical", dice_sim_size)
+for (i in 1:dice_sim_size) {
+  days <- sample(6, size = 10, replace = TRUE)
+  dice_matches[[i]] <- any(table(days) > 5)
+}
+
+sum(dice_matches) / dice_sim_size
+```
+
+9.
+
+```{r hw-9}
+sim_size <- 1e5
+
+matches <- vector("logical", sim_size)
+for (i in 1:sim_size) {
+  days <- sample(365, size = 100, replace = TRUE)
+  matches[[i]] <- any(table(days) > 1)
+}
+
+p <- sum(matches) / sim_size
+
+p * 100
+```
+
+I somehow got the simulation problems wrong.
+
+
+
+
+
