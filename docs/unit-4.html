@@ -11,9 +11,9 @@
 
 <meta name="author" content="elliothershberg" />
 
-<meta name="date" content="2022-04-16" />
+<meta name="date" content="2022-04-21" />
 
-<title>unit-3</title>
+<title>unit-4</title>
 
 <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -358,9 +358,9 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">unit-3</h1>
+<h1 class="title toc-ignore">unit-4</h1>
 <h4 class="author">elliothershberg</h4>
-<h4 class="date">2022-04-16</h4>
+<h4 class="date">2022-04-21</h4>
 
 </div>
 
@@ -578,8 +578,8 @@ have uncommitted changes.
 
 <p>
 These are the previous versions of the repository in which changes were
-made to the R Markdown (<code>analysis/unit-3.Rmd</code>) and HTML
-(<code>docs/unit-3.html</code>) files. If you’ve configured a remote Git
+made to the R Markdown (<code>analysis/unit-4.Rmd</code>) and HTML
+(<code>docs/unit-4.html</code>) files. If you’ve configured a remote Git
 repository (see <code>?wflow_git_remote</code>), click on the hyperlinks
 in the table below to view the files as they were in that past version.
 </p>
@@ -610,7 +610,7 @@ Message
 Rmd
 </td>
 <td>
-<a href="https://github.com/elliothershberg/stats-in-medicine/blob/087c22f44ba8f49c87fc7750ab91dbbcbd99739a/analysis/unit-3.Rmd" target="_blank">087c22f</a>
+<a href="https://github.com/elliothershberg/stats-in-medicine/blob/087c22f44ba8f49c87fc7750ab91dbbcbd99739a/analysis/unit-4.Rmd" target="_blank">087c22f</a>
 </td>
 <td>
 elliothershberg
@@ -622,40 +622,6 @@ elliothershberg
 wflow_publish(c("analysis/index.Rmd", "analysis/unit-3.Rmd",
 </td>
 </tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/elliothershberg/stats-in-medicine/5bfbe23e6397a50effb266b2a0786c96cbb6e044/docs/unit-3.html" target="_blank">5bfbe23</a>
-</td>
-<td>
-elliothershberg
-</td>
-<td>
-2022-04-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/elliothershberg/stats-in-medicine/blob/9ce9047729658276ff1b0b292606955cb267a384/analysis/unit-3.Rmd" target="_blank">9ce9047</a>
-</td>
-<td>
-elliothershberg
-</td>
-<td>
-2022-04-18
-</td>
-<td>
-wflow_publish(c("analysis/index.Rmd", "analysis/unit-3.Rmd"))
-</td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -663,182 +629,8 @@ wflow_publish(c("analysis/index.Rmd", "analysis/unit-3.Rmd"))
 </div>
 </div>
 </div>
-<div id="bayes-problems" class="section level2">
-<h2>Bayes Problems</h2>
-<p>We know the overall formula is:</p>
-<p><span class="math display">\[
-P(A|B)=\frac{P(A \cap B)}{P(B)}=\frac{P(B|A)P(A)}{P(B)}
-\]</span></p>
-<p>Some examples:</p>
-<p>An insurance company categorizes 30% of drivers as high-risk and 70%
-as low-risk. High-risk drivers have a 10% chance of having an accident
-in a one-year period. Low-risk drivers have a 5% chance. What is the
-chance that a randomly selected driver is a high-risk driver?</p>
-<pre class="r"><code>high_risk_chance &lt;- 0.3</code></pre>
-<p>An insurance company categorizes 30% of drivers as high-risk and 70%
-as low-risk. High-risk drivers have a 10% chance of having an accident
-in a one-year period. Low-risk drivers have a 5% chance. What is the
-marginal (overall) probability of having an accident?</p>
-<pre class="r"><code>marginal_accident &lt;- 0.3 * .10 + 0.7 * 0.05</code></pre>
-<p>An insurance company categorizes 30% of drivers has high-risk drivers
-and 70% as low-risk drivers. High-risk drivers have a 10% chance of
-having an accident in a one-year period. Low-risk drivers have a 5%
-chance. If a driver has an accident, what is the probability that they
-are a high-risk driver?</p>
-<pre class="r"><code>p_high_risk &lt;- (0.1 * 0.3) / marginal_accident</code></pre>
-</div>
-<div id="unit-3-r-lab" class="section level2">
-<h2>Unit 3 R Lab</h2>
-<p>Birthday simulation</p>
-<pre class="r"><code>days &lt;- sample(365, size = 30, replace = TRUE)
-
-table(days)</code></pre>
-<pre><code>days
- 21  46  62  72  77  82 103 151 153 169 220 225 226 273 277 280 282 283 289 305 
-  1   1   1   1   1   1   1   1   1   1   1   1   1   2   1   2   2   1   1   1 
-320 324 334 338 342 355 359 
-  1   1   1   1   1   1   1 </code></pre>
-<p>Check for pairs.</p>
-<pre class="r"><code>any(table(days) &gt; 1)</code></pre>
-<pre><code>[1] TRUE</code></pre>
-<p>Now to simulate this many times.</p>
-<pre class="r"><code>sim_size &lt;- 1e5
-
-matches &lt;- vector(&quot;logical&quot;, sim_size)
-for (i in 1:sim_size) {
-  days &lt;- sample(365, size = 60, replace = TRUE)
-  matches[[i]] &lt;- any(table(days) &gt; 4)
-}</code></pre>
-<p>And the resulting number of times:</p>
-<pre class="r"><code>sum(matches) / sim_size</code></pre>
-<pre><code>[1] 0.00023</code></pre>
-</div>
-<div id="unit-3-homework" class="section level2">
-<h2>Unit 3 Homework</h2>
-<ol style="list-style-type: decimal">
-<li></li>
-</ol>
-<p>About 4% of pregnant women will have twins. About 10% of non-twins
-will be born prematurely and 60% of twins will be born prematurely. What
-is the total (overall) probability that a pregnant woman will experience
-a premature birth? Enter the percentage as a whole number and do not
-include the percent sign.</p>
-<pre class="r"><code>p_premature &lt;- (0.04 * .60) + (0.96 * 0.1)
-
-p_premature</code></pre>
-<pre><code>[1] 0.12</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li></li>
-</ol>
-<p>In a certain lottery, you must choose three numbers: any number
-between 1 and 10; any number between 1 and 20; and any number between 1
-and 30. Numbers may repeat and order matters (e.g., 5-5-5 is allowed;
-and 5-9-30 is different than 9-5-30). How many different lottery picks
-are there? Enter as a whole number.</p>
-<pre class="r"><code>10 * 20 * 30</code></pre>
-<pre><code>[1] 6000</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li></li>
-</ol>
-<p>Suppose that a man lies 80% of the time. If the man tells you 4
-“facts,” what’s the probability that at least one of these is a lie?
-Round to 1 decimal place and enter as a percentage without the percent
-sign.</p>
-<pre class="r"><code>p_lie &lt;- 1 - 0.2^4
-
-p_lie</code></pre>
-<pre><code>[1] 0.9984</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li></li>
-</ol>
-<p>According to a recent study, 88 percent of patients who receive a
-heart transplant in the U.S. survive at least 1 year after the surgery
-and 75 percent survive at least 5 years. If a heart transplant patient
-survives the first year after transplantation, what’s the chance that
-she will survive 5 years or more? Enter your answer as a whole number
-and do not include the percent sign.</p>
-<p>P(survive 5 | survive 1) = P(survive 1 AND survive 5) / P(survive
-1)</p>
-<pre class="r"><code>0.75 / 0.88</code></pre>
-<pre><code>[1] 0.8522727</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li></li>
-</ol>
-<p>A non-invasive pregnancy screening test for Trisomy 21 (Down’s
-Syndrome) that uses cell-free DNA from the mother’s blood has a
-sensitivity of 100% and a specificity of 99.9%. What is the positive
-predictive value of the test if the prevalence of Trisomy 21 in the
-screened population is 25 per 10,000? Enter as a whole number and do not
-include the percent sign.</p>
-<p>PPV = P(Down’s | test+ ) = P(test+ | Down’s) * P(Down’s) /
-P(test+)</p>
-<pre class="r"><code>p_pos_test &lt;- (25/10000) * 1 + (1-25/10000)*(1-0.999)
-
-downs_ppv &lt;- (1 * (25 / 10000) ) / p_pos_test
-
-downs_ppv</code></pre>
-<pre><code>[1] 0.7147963</code></pre>
-<ol start="6" style="list-style-type: decimal">
-<li></li>
-</ol>
-<p>In the early 1980s, hemophiliacs received reconstituted clotting
-factor concentrates derived from human blood. The concentrates were
-pooled from the blood of about 1000 donors per lot. If the prevalence of
-hepatitis C in donor blood in the early 1980s was 1 in 1000, what was
-the probability that a hemophiliac would contract hepatitis C from a
-single infusion of clotting factors? Enter as a percentage but do not
-include the percent sign; round to 1 decimal place.</p>
-<pre class="r"><code>p_hep_c &lt;- 1 - (1 - 1/ 1000)^1000
-
-p_hep_c</code></pre>
-<pre><code>[1] 0.6323046</code></pre>
-<ol start="7" style="list-style-type: decimal">
-<li></li>
-</ol>
-<p>A bag contains 100 Hershey’s kisses, 20 of which have star stickers
-on the bottom. If a child reaches in and picks out two chocolates, what
-is the probability that neither chocolate will have a star on the
-bottom? Enter as a percentage without the percent sign; round to one
-decimal place.</p>
-<pre class="r"><code>p_no_choc &lt;- (20 / 100) * (20 / 100)
-
-p_no_choc</code></pre>
-<pre><code>[1] 0.04</code></pre>
-<ol start="8" style="list-style-type: decimal">
-<li></li>
-</ol>
-<p>If you roll 10 dice, what is the probability that the same number
-will come up on at least 5 dice?</p>
-<p>(Hint: you can modify the code provided for solving the birthday
-problems as the basis for this simulation; instead of 365 birthdays,
-there are 6 possible rolls of a die.) Enter as a percent without the
-percentage sign; round to one decimal place.</p>
-<pre class="r"><code>dice_sim_size &lt;- 1e5
-
-dice_matches &lt;- vector(&quot;logical&quot;, dice_sim_size)
-for (i in 1:dice_sim_size) {
-  days &lt;- sample(6, size = 10, replace = TRUE)
-  dice_matches[[i]] &lt;- any(table(days) &gt; 5)
-}
-
-sum(dice_matches) / dice_sim_size</code></pre>
-<pre><code>[1] 0.01432</code></pre>
-<ol start="9" style="list-style-type: decimal">
-<li></li>
-</ol>
-<pre class="r"><code>sim_size &lt;- 1e5
-
-matches &lt;- vector(&quot;logical&quot;, sim_size)
-for (i in 1:sim_size) {
-  days &lt;- sample(365, size = 100, replace = TRUE)
-  matches[[i]] &lt;- any(table(days) &gt; 1)
-}
-
-p &lt;- sum(matches) / sim_size
-
-p * 100</code></pre>
-<pre><code>[1] 100</code></pre>
-<p>I somehow got the simulation problems wrong.</p>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
