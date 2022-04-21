@@ -58,8 +58,8 @@ sim_size <- 1e5
 
 matches <- vector("logical", sim_size)
 for (i in 1:sim_size) {
-  days <- sample(365, size = 30, replace = TRUE)
-  matches[[i]] <- any(table(days) > 1)
+  days <- sample(365, size = 60, replace = TRUE)
+  matches[[i]] <- any(table(days) > 4)
 }
 ```
 
