@@ -1,0 +1,124 @@
+---
+title: "midterm-1-practice"
+author: "elliothershberg"
+date: "2022-04-18"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+Practice problems for midterm 1.
+
+## Extra problem sheet
+
+```{r prob-1}
+price <- c(5, 10, 15, 18, 22, 50, 100, 500)
+
+median(price)
+
+mean(price)
+
+sd(price)
+```
+
+```{r prob-2}
+# Can't calculate rate ratio or risk ratio, can calulcate odds ratio
+smoker_odds <- (15 / 35) / (10 / 40)
+
+smoker_odds
+```
+
+```{r prob-3}
+smoker_rate <- 20 / (2 * 200)
+
+# multiply by 100 to get in 100-person years
+smoker_rate * 100
+
+non_smoker_rate <- 50 / (3 * 800)
+
+non_smoker_rate * 100
+
+# rate ratio
+smoker_rate / non_smoker_rate
+
+# risk ratio = ratio of cumulative risks
+
+# 20 out of 200 smokers had breast cancer
+smoker_cum_risk <- 20 / 200
+
+# 50 out of 800 non-smokers had breast cancer
+non_smoker_cum_risk <- 50 / 800
+
+# risk ratio
+smoker_cum_risk / non_smoker_cum_risk
+
+# odds ratio = the ratio of the odds of getting the disease
+# odds = p / 1 - p
+# in this case n with event / n - n with event
+smoker_odds <- 20 / (200 - 20)
+non_smoker_odds <- 50 / (800 - 50)
+
+# odds ratio
+smoker_odds / non_smoker_odds
+```
+
+There's an important concept here.
+The relationship between the risk ratio and the odds ratio.
+Odds ratios and risk ratios are similar for rare outcomes.
+For common outcomes, odds ratios can be much larger, and that can be misleading.
+
+```{r prob-4}
+(4 / 310) * 1000
+
+```
+
+```{r prob-5}
+(20 / 200) * (19 / 199)
+```
+
+6.
+
+Conditional probabilities.
+Prob pregnant, given a positive test.
+
+P(pregnant | test+) = (P(test+ | pregnant) * P(pregnant)) / P(test+)
+
+P(test+) = P(true positive) * P(pregnant) + P(false positive) * P(not pregnant)
+
+```{r prob-6}
+# If 50% of women taking test are pregnant
+(0.95 * 0.5) / ( (0.95 * 0.5) + (0.02 * 0.5) )
+
+# If 10% of women taking test are pregnant
+(0.95 * 0.1) / ( (0.95 * 0.1) + (0.02 * 0.9) )
+```
+
+## Midterm prep questions
+
+```{r prep-1}
+0.168 * 0.168
+```
+
+```{r prep-2}
+s_rate <- 25 / (2.1 * 200)
+
+rate * 1000
+
+n_rate <- 10 / (2.5 * 200)
+
+s_rate / n_rate
+
+s_risk <- 25 / 200
+n_risk <- 10 / 200
+
+s_risk / n_risk
+```
+
+
+
+
+
+
+
