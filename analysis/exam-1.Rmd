@@ -1,0 +1,103 @@
+---
+title: "exam-1"
+author: "elliothershberg"
+date: "2022-04-18"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+```{r}
+library(tidyverse)
+```
+
+
+```{r p-2}
+covid <- readxl::read_excel("data/covid_data.xlsx")
+
+# view(covid)
+
+ggplot(covid, aes(x = Age)) +
+  geom_histogram(binwidth = 5)
+```
+
+
+```{r}
+hist(covid$Age)
+```
+
+```{r}
+hist(as.numeric(covid$'TLC (X 103'))
+```
+
+A rapid test for COVID-19 has a sensitivity of 75% and a specificity of 98%. If the prevalence of COVID-19 in a particular population is 1%, what is the positive predictive value of a positive test?
+
+PPV = the probability that if you test positive for the disease, you actually have the disease.
+
+P(have disease | test+) = (P(test+ | have disease) * P(have disease)) / P(test+)
+
+P(test+) = ( P(test+) have disease ) + (P(test+) don't have disease)
+
+```{r}
+numerator <- 0.75 * 0.01
+
+denominator <- (0.75 * 0.01) + (0.02 * 0.99)
+
+numerator / denominator
+```
+
+
+7.
+
+In a case-control study comparing 100 insomniacs to 100 normal sleepers, researchers found that 60 of the insomniacs consumed coffee after 1pm versus only 40 of the normal sleepers. What is the odds ratio that expresses the increase in the odds of insomnia associated with late coffee drinking?
+
+
+```{r}
+coffee_odds <- 60 / 40
+
+non_coffee_odds <- 40 / 60
+
+coffee_odds / non_coffee_odds
+```
+
+14.
+
+In a study of the effect of convalescent plasma on COVID-19, 15 of 100 participants who were randomly assigned to placebo died versus 10 of 100 participants who were randomly assigned to convalescent plasma. What is the risk ratio comparing convalescent plasma to placebo for the outcome of death?
+
+risk ratio= ratio of cumulative risks
+
+```{r}
+(15 / 100) / (10 / 100)
+```
+
+15.
+
+In a study of 910 runners who were followed an average of 9 months, 24 sustained stress fractures. What was the incidence of stress fractures in this study?
+
+
+```{r}
+(24 / ((9 / 12) * 910)) * 100
+```
+
+2 = 0.5 / x
+
+x = 2 * (1 / 0.5)
+
+Looking at IQR for uniform distribution
+
+```{r}
+dist <- runif(1e5, 0, 50000)
+
+hist(dist)
+
+IQR(dist)
+
+sd(dist)
+```
+
+
+
+
+
