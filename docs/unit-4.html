@@ -389,7 +389,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-04-21
+<strong>Last updated:</strong> 2022-04-24
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -520,15 +520,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomelliothershbergstatsinmedicinetree087c22f44ba8f49c87fc7750ab91dbbcbd99739atargetblank087c22fa">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomelliothershbergstatsinmedicinetree6c809bf4ea1da3e7c1c8112c5c3e5cce16d3460ftargetblank6c809bfa">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/elliothershberg/stats-in-medicine/tree/087c22f44ba8f49c87fc7750ab91dbbcbd99739a" target="_blank">087c22f</a>
+<a href="https://github.com/elliothershberg/stats-in-medicine/tree/6c809bf4ea1da3e7c1c8112c5c3e5cce16d3460f" target="_blank">6c809bf</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomelliothershbergstatsinmedicinetree087c22f44ba8f49c87fc7750ab91dbbcbd99739atargetblank087c22fa"
+id="strongRepositoryversionstrongahrefhttpsgithubcomelliothershbergstatsinmedicinetree6c809bf4ea1da3e7c1c8112c5c3e5cce16d3460ftargetblank6c809bfa"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -538,7 +538,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/elliothershberg/stats-in-medicine/tree/087c22f44ba8f49c87fc7750ab91dbbcbd99739a" target="_blank">087c22f</a>.
+<a href="https://github.com/elliothershberg/stats-in-medicine/tree/6c809bf4ea1da3e7c1c8112c5c3e5cce16d3460f" target="_blank">6c809bf</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -558,9 +558,6 @@ Ignored files:
     Ignored:    data/Unit_1_lab_manual.docx
     Ignored:    data/classdata.xlsx
     Ignored:    data/covid_data.xlsx
-
-Untracked files:
-    Untracked:  analysis/midterm-1-practice.Rmd
 
 </code></pre>
 <p>
@@ -610,6 +607,40 @@ Message
 Rmd
 </td>
 <td>
+<a href="https://github.com/elliothershberg/stats-in-medicine/blob/6c809bf4ea1da3e7c1c8112c5c3e5cce16d3460f/analysis/unit-4.Rmd" target="_blank">6c809bf</a>
+</td>
+<td>
+elliothershberg
+</td>
+<td>
+2022-04-24
+</td>
+<td>
+wflow_publish(c("analysis/unit-4.Rmd"))
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/elliothershberg/stats-in-medicine/a4bbfda29475e7f62ebff108d19874af41675b7f/docs/unit-4.html" target="_blank">a4bbfda</a>
+</td>
+<td>
+elliothershberg
+</td>
+<td>
+2022-04-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 <a href="https://github.com/elliothershberg/stats-in-medicine/blob/087c22f44ba8f49c87fc7750ab91dbbcbd99739a/analysis/unit-4.Rmd" target="_blank">087c22f</a>
 </td>
 <td>
@@ -631,6 +662,419 @@ wflow_publish(c("analysis/index.Rmd", "analysis/unit-3.Rmd",
 </div>
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
+<p>Notes from Unit 4: Probability Distributions.</p>
+</div>
+<div id="probability-distributions" class="section level2">
+<h2>Probability Distributions</h2>
+<ul>
+<li>Gives the probabilities of all possible outcomes</li>
+<li>mathematical function that maps possible outcomes to
+probabilities.</li>
+<li>Integrals are really useful for precisely solving
+probabilities.</li>
+<li>Probability functions can be discrete or continuous.</li>
+<li>Probability mass function (PMF): when each outcome has some exact
+probability value.</li>
+<li>Cumulative distribution function (CDF): function where for x, it
+returns the probability for all outcomes less than or equal to x.</li>
+<li>Important discrete distributions
+<ul>
+<li>Binomial (yes/no)</li>
+<li>Poisson</li>
+</ul></li>
+<li>probabilities associated with continuous functions are just areas
+under the curve (integrals).</li>
+<li>important continuous distributions:
+<ul>
+<li>Exponential distribution</li>
+<li>uniform distribution</li>
+</ul></li>
+<li>probability density functions vs. probability mass functions</li>
+<li>the PDF is the continuous version of a PMF, where it isn’t an exact
+value, but an integral for a range of possible values.</li>
+<li>All probability distributions are characterized by:
+<ul>
+<li>expected value (mean)</li>
+<li>variance (standard deviation squared)</li>
+</ul></li>
+</ul>
+</div>
+<div id="expected-value" class="section level2">
+<h2>Expected Value</h2>
+<ul>
+<li>expected value is the mean of a probability distribution.</li>
+<li>it is a weighted average, calculated by weighting the value of each
+outcome by its probability.</li>
+</ul>
+<p>Discrete:</p>
+<p><span class="math display">\[
+E(X) = \sum_{all \, x} x_i p(x_i)
+\]</span></p>
+<p>Continuous:</p>
+<p><span class="math display">\[
+E(X) = \int_{all \, x} x_i p(x_i)dx
+\]</span></p>
+<ul>
+<li>A sample mean is actually a special case of the expected value.
+Probability of each sample is just (1/n)</li>
+</ul>
+</div>
+<div id="variance" class="section level2">
+<h2>Variance</h2>
+<ul>
+<li>Variance quantifies the the variability of a probability
+distribution.</li>
+<li>Just like for expected value, it is computed by weighting with
+probabilities.</li>
+</ul>
+<p><span class="math display">\[
+\sigma^2 = Var(x) = \sum_{all \, x}(x_i - \mu)^2p(x_i)
+\]</span></p>
+<ul>
+<li>empirical variance is just a special case of variance.</li>
+</ul>
+<pre class="r"><code>coin_variance &lt;- (1 - 3.5)^2 * (1/6) +
+  (2 - 3.5)^2 * (1/6) +
+  (3 - 3.5)^2 * (1/6) +
+  (4 - 3.5)^2 * (1/6) +
+  (5 - 3.5)^2 * (1/6) +
+  (6 - 3.5)^2 * (1/6)
+
+coin_variance</code></pre>
+<pre><code>[1] 2.916667</code></pre>
+<pre class="r"><code>coin_sd &lt;- sqrt(coin_variance)
+
+coin_sd</code></pre>
+<pre><code>[1] 1.707825</code></pre>
+<ul>
+<li>Assuming X and Y are independent:</li>
+<li>Var(X+Y) = Var(X) + Var(Y)</li>
+<li>Var(X+Y) = Var(X) + Var(Y)</li>
+</ul>
+<pre class="r"><code>surgery_variance &lt;-
+  (0 - .29)^2 * (0.8) +
+  (1 - .29)^2 * (0.13) +
+  (2 - .29)^2 * (0.05) +
+  (3 - .29)^2 * (0.02)
+
+surgery_sd &lt;- sqrt(surgery_variance)
+
+surgery_sd</code></pre>
+<pre><code>[1] 0.6526101</code></pre>
+<div id="variance-as-an-operator" class="section level3">
+<h3>Variance as an Operator</h3>
+<ul>
+<li>Variance of a constant is 0. Var(c) = 0</li>
+<li>Variance of constant + random variable is just the variance of the
+random variable. Var(c + X) = Var(x)</li>
+<li>However, multiplication by a constant matters. Var(cX) = c^2
+Var(X)</li>
+<li>Same rules from above about X and Y being independent.</li>
+</ul>
+</div>
+</div>
+<div id="binomial-distribution" class="section level2">
+<h2>Binomial Distribution</h2>
+<ul>
+<li>fixed number of trials (n)</li>
+<li>a binary outcome</li>
+<li>constant probability for each trial</li>
+<li>intuition for the distribution:
+<ul>
+<li>You can brute force the combination by determining all of the ways
+to get an outcome, for example getting 3/5 heads in 5 coin tosses.</li>
+<li>the idea is to find all possible arrangements (the choose function),
+and then multiply by the probability for each outcome. For this example,
+choose(5, 3) * (0.5)^2 * (0.5)^3</li>
+</ul></li>
+</ul>
+<p>Refresher on the factorial here:</p>
+<p><span class="math display">\[
+{n \choose k} = \frac{n!}{k!(n-k)!}
+\]</span></p>
+<ul>
+<li>General formula for binomial distribution:</li>
+</ul>
+<p>$$ {n X}p<sup>X(1-p)</sup>{n-X}</p>
+<p>$$</p>
+<ul>
+<li>Writing: X ~ Bin(n, p) is “X is distributed binomially with
+parameters n and p”</li>
+<li>When computing probabilities, you take the entire tail. I.e.
+probability of 6 or greater out of 8, not just probability of 6.</li>
+<li>Parameters of binomial distribution X ~ Bin(n, p):
+<ul>
+<li>E(X) = np</li>
+<li>Var(X) = np(1-p)</li>
+<li>SD(X) = sqrt(np(1-p))</li>
+</ul></li>
+</ul>
+<pre class="r"><code>choose(5, 1) * (0.5) * (0.5)^4</code></pre>
+<pre><code>[1] 0.15625</code></pre>
+<pre class="r"><code># equivalent
+dbinom(1, size = 5, prob = 0.5)</code></pre>
+<pre><code>[1] 0.15625</code></pre>
+<pre class="r"><code>150 * 0.5</code></pre>
+<pre><code>[1] 75</code></pre>
+<pre class="r"><code>sqrt(150 * 0.5 * (1 - 0.5))</code></pre>
+<pre><code>[1] 6.123724</code></pre>
+<pre class="r"><code>75 - sqrt(150 * 0.5 * (1 - 0.5))</code></pre>
+<pre><code>[1] 68.87628</code></pre>
+</div>
+<div id="the-normal-distribution" class="section level2">
+<h2>The Normal Distribution</h2>
+<ul>
+<li>paramaters:
+<ul>
+<li>mean (mu)</li>
+<li>standard deviation (sigma)</li>
+</ul></li>
+<li>mathematical formula for normal distribution</li>
+<li>68% within 1 SD, 95% within 2 SD, 99.7% within 3 SD</li>
+<li>the standard normal (Z) is a “universal currency”
+<ul>
+<li>Has a mean of 0 and standard deviation of 1.</li>
+</ul></li>
+</ul>
+<p>$$ p(Z) = e<sup>{-()</sup>2} = e<sup>{-(Z)</sup>2}</p>
+<p>$$</p>
+<ul>
+<li>All normal distributions can be converted into the standard
+deviation units (“Z-scores) by subtracting the mean dividing by the
+standard deviation:</li>
+</ul>
+<p><span class="math display">\[
+Z = \frac{X-\mu}{\sigma}
+\]</span></p>
+<ul>
+<li>Z-scores reflect the standard deviation units away from the
+mean.</li>
+</ul>
+<p>The mini-quiz:</p>
+<pre class="r"><code>(0.95 - 1.0) / 0.1</code></pre>
+<pre><code>[1] -0.5</code></pre>
+<pre class="r"><code>pnorm(0)</code></pre>
+<pre><code>[1] 0.5</code></pre>
+</div>
+<div id="normal-approximation-to-the-binomial" class="section level2">
+<h2>Normal Approximation to the Binomial</h2>
+<ul>
+<li>we can approximate the binomial as a normal curve with mean = np and
+variance = np(1-p)</li>
+<li>Can be annoying to compute probabilites from binomial, so
+historically (before cheap computation) this has been a useful
+approximation</li>
+<li>statistics for proportions are also based on the normal
+distribution.</li>
+</ul>
+<p>Quiz:</p>
+<pre class="r"><code>100 * 0.2</code></pre>
+<pre><code>[1] 20</code></pre>
+<pre class="r"><code>sqrt(100 * 0.2 * (1 - 0.2))</code></pre>
+<pre><code>[1] 4</code></pre>
+<pre class="r"><code>#  next part
+
+z &lt;- (20 - 20) / 4
+
+pnorm(0)</code></pre>
+<pre><code>[1] 0.5</code></pre>
+</div>
+<div id="the-t-distribution" class="section level2">
+<h2>The T distribution</h2>
+<ul>
+<li>This is a family of functions that is parameterized by:
+<ul>
+<li>v is the degrees of freedom (directly related to sample size)</li>
+<li>the gamma function</li>
+</ul></li>
+<li>as v increases, the t-distribution asymptotically approaches the
+normal distribution.</li>
+<li>When making inferences about the mean, we will be on a
+Z-distribution if we use the true standard deviation, but on a
+T-distribution if we use the sample standard deviation.</li>
+<li>The fatter tails represent greater uncertainty based on this
+difference.</li>
+</ul>
+<p>Quiz:</p>
+<pre class="r"><code># What is the Z value that corresponds to 5% area in the right-hand tail of a
+# standard normal distribution?
+qnorm(.95)</code></pre>
+<pre><code>[1] 1.644854</code></pre>
+<pre class="r"><code># What is the T value that corresponds to 5% area in the right-hand tail of a T
+# distribution with 15 degrees of freedom?
+qt(.95, 15)</code></pre>
+<pre><code>[1] 1.75305</code></pre>
+</div>
+<div id="unit-4-homework" class="section level2">
+<h2>Unit 4 Homework</h2>
+<ol style="list-style-type: decimal">
+<li></li>
+</ol>
+<p>Expected value is sum of each value times probability of that
+value.</p>
+<pre class="r"><code>(0 * 0) + (1 * 0.2) + (2 * 0.3) + (3 * 0.3) + (4 * 0.1) + (5 * 0.1)</code></pre>
+<pre><code>[1] 2.6</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li></li>
+</ol>
+<p>Standard deviation is square root of variance. Variance is the sum of
+differences from the mean times the probability.</p>
+<pre class="r"><code>vals &lt;- 0:5
+probs &lt;- c(0.0, 0.2, 0.3, 0.3, 0.1, 0.1)
+
+# using expected value as the mean
+m &lt;- 2.6
+
+variance &lt;- (0 - m)^2 * 0 + (1 - m)^2 * 0.2 + (2 - m)^2 * 0.3 + (3 - m)^2 * 0.3 + (4 - m)^2 * 0.1 + (5 - m)^2 * 0.1
+
+variance</code></pre>
+<pre><code>[1] 1.44</code></pre>
+<pre class="r"><code>sqrt(variance)</code></pre>
+<pre><code>[1] 1.2</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li></li>
+</ol>
+<p>Assuming that the trait is normally distributed with a mean of 35.4
+and a standard deviation of 9.6, approximately what percent of the
+population has scores below 20? Enter as a percentage, but do not
+include the percent sign. Round to 1 decimal place.</p>
+<pre class="r"><code>z &lt;- (20 - 35.4) / 9.6
+
+pnorm(z) * 100</code></pre>
+<pre><code>[1] 5.433866</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li></li>
+</ol>
+<p>In a group of 100 individuals from this population, approximately how
+many will have scores between 20 and 50?</p>
+<pre class="r"><code>lower &lt;- (20 - 35.4) / 9.6
+upper &lt;- (50 - 35.4) / 9.6
+
+lower_p &lt;- pnorm(lower) * 100
+upper_p &lt;- pnorm(upper) * 100
+
+upper_p - lower_p</code></pre>
+<pre><code>[1] 88.15105</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li></li>
+</ol>
+<p>For another study, researchers want to categorize participants as
+having “low”, “normal”, or “high” empathy. What cutoff value for the
+Empathy Quotient Scale should the they use if they want to define the
+low-empathy group as those in the lowest 10% of the population on the
+Empathy Quotient Scale? Round to the nearest whole number.</p>
+<pre class="r"><code>z &lt;- qnorm(0.1)
+
+z</code></pre>
+<pre><code>[1] -1.281552</code></pre>
+<p>So -1.28 = (x - 35.4) / 9.6</p>
+<p>Which means x = 23.112. Rounded to 23.</p>
+<ol start="6" style="list-style-type: decimal">
+<li></li>
+</ol>
+<p>A new cancer therapy has a response rate of 25% for an otherwise
+untreatable cancer. If 8 patients are given the new therapy, what’s the
+probability that exactly 3 will respond to the treatment? Calculate the
+exact binomial probability (do not use the normal approximation). Enter
+as a percent, but do not include the percent sign; round to one decimal
+place.</p>
+<pre class="r"><code>dbinom(3, size = 8, prob = 0.25) * 100</code></pre>
+<pre><code>[1] 20.76416</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li></li>
+</ol>
+<p>A new cancer therapy has a response rate of 25% for an otherwise
+untreatable cancer. If 8 patients are given the new therapy, what’s the
+probability that 2 or fewer will respond to the treatment? Calculate the
+exact binomial probability (do not use the normal approximation). Enter
+as a percent, but do not include the percent sign; round to one decimal
+place.</p>
+<pre class="r"><code>pbinom(2, size = 8, prob = 0.25) * 100</code></pre>
+<pre><code>[1] 67.85431</code></pre>
+<pre class="r"><code>round((pbinom(2, size = 8, prob = 0.25) * 100), 1)</code></pre>
+<pre><code>[1] 67.9</code></pre>
+<ol start="8" style="list-style-type: decimal">
+<li></li>
+</ol>
+<p>In a new lottery, the probability of winning is 1 in 10 million. If
+you win, you will win $10,000,000. The lottery costs 5 dollars to play.
+What is the expected value of playing this lottery? Enter as a dollar
+amount without the dollar sign.</p>
+<p>Example from lecture:</p>
+<p>E(X) = P(win) * $2,000,000 + P(lose) * -$1.00</p>
+<pre class="r"><code>p_win &lt;- 1 / 10e6
+p_lose &lt;- 1 - p_win
+
+ev &lt;- (p_win * 10e6) + p_lose * -5
+
+ev</code></pre>
+<pre><code>[1] -4</code></pre>
+<ol start="9" style="list-style-type: decimal">
+<li></li>
+</ol>
+<p>In a study of 100 people, researchers tested the effectiveness of a
+new home laser on improving facial appearance. Researchers photographed
+participants’ faces before and after 4 weeks of use of the laser. An
+independent dermatologist compared the two photos for each participant,
+but was not told which was the “before” picture and which was the
+“after” picture. For 59 out of 100 participants, she determined that the
+facial skin looked better in the “after” picture than in the “before”
+picture.</p>
+<p>What is the probability that she would have correctly ordered 59 or
+more pictures if she was just guessing?</p>
+<p>Hint: use a normal approximation to the binomial. Enter as a percent,
+but do not include the percent sign; round to 1 decimal place.</p>
+<pre class="r"><code>pbinom(58, 100, prob = 0.5, lower.tail = FALSE)</code></pre>
+<pre><code>[1] 0.04431304</code></pre>
+<ol start="10" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>fifth &lt;- qnorm(0.05)
+
+twenty_fifth &lt;- qnorm(0.25)</code></pre>
+<ol start="11" style="list-style-type: decimal">
+<li></li>
+</ol>
+<p>For a particular infectious disease, 15% of non-vaccinated
+individuals will become infected with the disease in one year versus 5%
+of vaccinated individuals. Simulate a virtual randomized trial in which
+you vaccinate 1000 individuals with the real vaccine and 1000
+individuals with a placebo vaccine and follow the groups for one year.
+(Hint: Generate values from random binomial functions with N=1000, p=.15
+and N=1000, p=.05; then subtract). How many more infections occurred in
+the placebo group than in the vaccine group in this single virtual
+trial?</p>
+<pre class="r"><code>p_placebo &lt;- rbinom(1, size = 1000, prob = 0.15)
+p_vacc &lt;- rbinom(1, size = 1000, prob = 0.05)
+
+p_placebo - p_vacc</code></pre>
+<pre><code>[1] 108</code></pre>
+<ol start="12" style="list-style-type: decimal">
+<li></li>
+</ol>
+<p>Repeat the virtual trial described above 30,000 times using a do-loop
+(SAS) or for-loop (R). Each time, record the number of excess infections
+in the placebo group (the number of infections in the placebo group
+minus the number of infections in the vaccine group). Which of the
+following is the histogram that results from this simulation trial?</p>
+<pre class="r"><code>n_reps &lt;- 30000
+
+diffs &lt;- vector(&quot;integer&quot;, length = n_reps)
+
+for (i in 1:n_reps) {
+  p_placebo &lt;- rbinom(1, size = 1000, prob = 0.15)
+  p_vacc &lt;- rbinom(1, size = 1000, prob = 0.05)
+  
+  diffs[[i]] &lt;- p_placebo - p_vacc
+}
+
+hist(diffs)</code></pre>
+<p><img src="figure/unit-4.Rmd/hw-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<ol start="13" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>sd(diffs)</code></pre>
+<pre><code>[1] 13.18015</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -658,17 +1102,17 @@ other attached packages:
 [1] workflowr_1.7.0
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.7       compiler_4.1.1   pillar_1.6.4     bslib_0.3.1     
- [5] later_1.3.0      git2r_0.29.0     jquerylib_0.1.4  tools_4.1.1     
- [9] getPass_0.2-2    digest_0.6.29    jsonlite_1.7.2   evaluate_0.14   
-[13] tibble_3.1.6     lifecycle_1.0.1  pkgconfig_2.0.3  rlang_0.4.12    
-[17] rstudioapi_0.13  yaml_2.2.1       xfun_0.29        fastmap_1.1.0   
-[21] httr_1.4.2       stringr_1.4.0    knitr_1.37       sass_0.4.0      
-[25] fs_1.5.2         vctrs_0.3.8      rprojroot_2.0.2  glue_1.6.0      
-[29] R6_2.5.1         processx_3.5.2   fansi_0.5.0      rmarkdown_2.11  
-[33] callr_3.7.0      magrittr_2.0.1   whisker_0.4      ps_1.6.0        
-[37] promises_1.2.0.1 htmltools_0.5.2  ellipsis_0.3.2   httpuv_1.6.5    
-[41] utf8_1.2.2       stringi_1.7.6    crayon_1.4.2    </code></pre>
+ [1] Rcpp_1.0.7       highr_0.9        compiler_4.1.1   pillar_1.6.4    
+ [5] bslib_0.3.1      later_1.3.0      git2r_0.29.0     jquerylib_0.1.4 
+ [9] tools_4.1.1      getPass_0.2-2    digest_0.6.29    jsonlite_1.7.2  
+[13] evaluate_0.14    tibble_3.1.6     lifecycle_1.0.1  pkgconfig_2.0.3 
+[17] rlang_0.4.12     rstudioapi_0.13  yaml_2.2.1       xfun_0.29       
+[21] fastmap_1.1.0    httr_1.4.2       stringr_1.4.0    knitr_1.37      
+[25] sass_0.4.0       fs_1.5.2         vctrs_0.3.8      rprojroot_2.0.2 
+[29] glue_1.6.0       R6_2.5.1         processx_3.5.2   fansi_0.5.0     
+[33] rmarkdown_2.11   callr_3.7.0      magrittr_2.0.1   whisker_0.4     
+[37] ps_1.6.0         promises_1.2.0.1 htmltools_0.5.2  ellipsis_0.3.2  
+[41] httpuv_1.6.5     utf8_1.2.2       stringi_1.7.6    crayon_1.4.2    </code></pre>
 </div>
 </div>
 
