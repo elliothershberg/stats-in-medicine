@@ -9,7 +9,383 @@ editor_options:
 
 ## Introduction
 
-```{r}
+Notes from Unit 4: Probability Distributions.
+
+## Probability Distributions
+
+-   Gives the probabilities of all possible outcomes
+-   mathematical function that maps possible outcomes to probabilities.
+-   Integrals are really useful for precisely solving probabilities.
+-   Probability functions can be discrete or continuous.
+-   Probability mass function (PMF): when each outcome has some exact probability value.
+-   Cumulative distribution function (CDF): function where for x, it returns the probability for all outcomes less than or equal to x.
+-   Important discrete distributions
+    -   Binomial (yes/no)
+    -   Poisson
+-   probabilities associated with continuous functions are just areas under the curve (integrals).
+-   important continuous distributions:
+    -   Exponential distribution
+    -   uniform distribution
+-   probability density functions vs. probability mass functions
+  - the PDF is the continuous version of a PMF, where it isn't an exact value, but an integral for a range of possible values.
+-   All probability distributions are characterized by:
+    -   expected value (mean)
+    -   variance (standard deviation squared)
+
+## Expected Value
+
+-   expected value is the mean of a probability distribution.
+-   it is a weighted average, calculated by weighting the value of each outcome by its probability.
+
+Discrete:
+
+$$
+E(X) = \sum_{all \, x} x_i p(x_i)
+$$
+
+Continuous:
+
+$$
+E(X) = \int_{all \, x} x_i p(x_i)dx
+$$
+
+-   A sample mean is actually a special case of the expected value. Probability of each sample is just (1/n)
+
+## Variance
+
+-   Variance quantifies the the variability of a probability distribution.
+-   Just like for expected value, it is computed by weighting with probabilities.
+
+$$
+\sigma^2 = Var(x) = \sum_{all \, x}(x_i - \mu)^2p(x_i)
+$$
+
+-   empirical variance is just a special case of variance.
+
+```{r coin-variance}
+coin_variance <- (1 - 3.5)^2 * (1/6) +
+  (2 - 3.5)^2 * (1/6) +
+  (3 - 3.5)^2 * (1/6) +
+  (4 - 3.5)^2 * (1/6) +
+  (5 - 3.5)^2 * (1/6) +
+  (6 - 3.5)^2 * (1/6)
+
+coin_variance
+
+coin_sd <- sqrt(coin_variance)
+
+coin_sd
+```
+
+-   Assuming X and Y are independent:
+  -   Var(X+Y) = Var(X) + Var(Y) 
+  -   Var(X+Y) = Var(X) + Var(Y)
+
+```{r surgery-sd}
+surgery_variance <-
+  (0 - .29)^2 * (0.8) +
+  (1 - .29)^2 * (0.13) +
+  (2 - .29)^2 * (0.05) +
+  (3 - .29)^2 * (0.02)
+
+surgery_sd <- sqrt(surgery_variance)
+
+surgery_sd
+```
+
+### Variance as an Operator
+
+-   Variance of a constant is 0. Var(c) = 0
+-   Variance of constant + random variable is just the variance of the random variable. Var(c + X) = Var(x)
+-   However, multiplication by a constant matters. Var(cX) = c^2 Var(X)
+-   Same rules from above about X and Y being independent.
+
+## Binomial Distribution
+
+- fixed number of trials (n)
+- a binary outcome
+- constant probability for each trial
+- intuition for the distribution:
+  - You can brute force the combination by determining all of the ways to get an outcome, for example getting 3/5 heads in 5 coin tosses.
+  - the idea is to find all possible arrangements (the choose function), and then multiply by the probability for each outcome. For this example, choose(5, 3) * (0.5)^2 * (0.5)^3
+
+Refresher on the factorial here:
+
+$$
+{n \choose k} = \frac{n!}{k!(n-k)!}
+$$
+
+- General formula for binomial distribution:
+
+$$
+{n \choose X}p^X(1-p)^{n-X}
+
+$$
+
+- Writing: X ~ Bin(n, p) is "X is distributed binomially with parameters n and p"
+- When computing probabilities, you take the entire tail. I.e. probability of 6 or greater out of 8, not just probability of 6.
+- Parameters of binomial distribution X ~ Bin(n, p):
+  - E(X) = np
+  - Var(X) = np(1-p)
+  - SD(X) = sqrt(np(1-p))
+
+```{r binom-quiz-1}
+choose(5, 1) * (0.5) * (0.5)^4
+
+# equivalent
+dbinom(1, size = 5, prob = 0.5)
+```
+
+```{r binom-quiz-2}
+150 * 0.5
+
+sqrt(150 * 0.5 * (1 - 0.5))
+
+75 - sqrt(150 * 0.5 * (1 - 0.5))
+```
+
+## The Normal Distribution
+
+- paramaters:
+  - mean (mu)
+  - standard deviation (sigma)
+- mathematical formula for normal distribution
+- 68% within 1 SD, 95% within 2 SD, 99.7% within 3 SD
+- the standard normal (Z) is a "universal currency"
+  - Has a mean of 0 and standard deviation of 1.
+
+$$
+p(Z) = \frac{1}{(1)\sqrt{2 \pi}} \cdot e^{-\frac{1}{2}(\frac{Z-0}{1})^2} = \frac{1}{\sqrt{2 \pi}} \cdot e^{-\frac{1}{2}(Z)^2}
+
+$$
+
+- All normal distributions can be converted into the standard deviation units ("Z-scores)
+by subtracting the mean dividing by the standard deviation:
+
+$$
+Z = \frac{X-\mu}{\sigma}
+$$
+
+- Z-scores reflect the standard deviation units away from the mean.
+
+The mini-quiz:
+
+```{r norm-quiz-1}
+(0.95 - 1.0) / 0.1
+```
+
+```{r norm-quiz-2}
+pnorm(0)
+```
+
+## Normal Approximation to the Binomial
+
+- we can approximate the binomial as a normal curve with mean = np and variance = np(1-p)
+- Can be annoying to compute probabilites from binomial, so historically (before cheap computation) this has been a useful approximation
+- statistics for proportions are also based on the normal distribution.
+
+Quiz:
+
+```{r binom-approx-quiz}
+100 * 0.2
+
+sqrt(100 * 0.2 * (1 - 0.2))
+
+#  next part
+
+z <- (20 - 20) / 4
+
+pnorm(0)
+```
+
+## The T distribution
+
+- This is a family of functions that is parameterized by:
+  - v is the degrees of freedom (directly related to sample size)
+  - the gamma function
+- as v increases, the t-distribution asymptotically approaches the normal distribution.
+- When making inferences about the mean, we will be on a Z-distribution if we use the true standard deviation, but on a T-distribution if we use the sample standard deviation.
+- The fatter tails represent greater uncertainty based on this difference.
+
+Quiz:
+
+```{r t-quiz}
+# What is the Z value that corresponds to 5% area in the right-hand tail of a
+# standard normal distribution?
+qnorm(.95)
+
+# What is the T value that corresponds to 5% area in the right-hand tail of a T
+# distribution with 15 degrees of freedom?
+qt(.95, 15)
 
 ```
+
+## Unit 4 Homework
+
+1.
+
+Expected value is sum of each value times probability of that value.
+
+```{r hw-1}
+(0 * 0) + (1 * 0.2) + (2 * 0.3) + (3 * 0.3) + (4 * 0.1) + (5 * 0.1)
+```
+
+2.
+
+Standard deviation is square root of variance.
+Variance is the sum of differences from the mean times the probability.
+
+```{r hw-2}
+vals <- 0:5
+probs <- c(0.0, 0.2, 0.3, 0.3, 0.1, 0.1)
+
+# using expected value as the mean
+m <- 2.6
+
+variance <- (0 - m)^2 * 0 + (1 - m)^2 * 0.2 + (2 - m)^2 * 0.3 + (3 - m)^2 * 0.3 + (4 - m)^2 * 0.1 + (5 - m)^2 * 0.1
+
+variance
+
+sqrt(variance)
+```
+
+3.
+
+Assuming that the trait is normally distributed with a mean of 35.4 and a standard deviation of 9.6, approximately what percent of the population has scores below 20? Enter as a percentage, but do not include the percent sign. Round to 1 decimal place.
+
+```{r hw-3}
+z <- (20 - 35.4) / 9.6
+
+pnorm(z) * 100
+```
+
+4.
+
+In a group of 100 individuals from this population, approximately how many will have scores between 20 and 50?
+
+```{r hw-4}
+lower <- (20 - 35.4) / 9.6
+upper <- (50 - 35.4) / 9.6
+
+lower_p <- pnorm(lower) * 100
+upper_p <- pnorm(upper) * 100
+
+upper_p - lower_p
+```
+
+5.
+
+For another study, researchers want to categorize participants as having “low”, “normal”, or “high” empathy. What cutoff value for the Empathy Quotient Scale should the they use if they want to define the low-empathy group as those in the lowest 10% of the population on the Empathy Quotient Scale? Round to the nearest whole number.
+
+```{r hw-5}
+z <- qnorm(0.1)
+
+z
+
+
+```
+
+So -1.28 = (x - 35.4) / 9.6
+
+Which means x = 23.112. Rounded to 23.
+
+6.
+
+A new cancer therapy has a response rate of 25% for an otherwise untreatable cancer. If 8 patients are given the new therapy, what’s the probability that exactly 3 will respond to the treatment? Calculate the exact binomial probability (do not use the normal approximation). Enter as a percent, but do not include the percent sign; round to one decimal place.
+
+```{r hw-6}
+dbinom(3, size = 8, prob = 0.25) * 100
+```
+
+7.
+
+A new cancer therapy has a response rate of 25% for an otherwise untreatable cancer. If 8 patients are given the new therapy, what’s the probability that 2 or fewer will respond to the treatment? Calculate the exact binomial probability (do not use the normal approximation). Enter as a percent, but do not include the percent sign; round to one decimal place.
+
+```{r hw-7}
+pbinom(2, size = 8, prob = 0.25) * 100
+
+round((pbinom(2, size = 8, prob = 0.25) * 100), 1)
+```
+
+8.
+
+In a new lottery, the probability of winning is 1 in 10 million. If you win, you will win $10,000,000. The lottery costs 5 dollars to play. What is the expected value of playing this lottery? Enter as a dollar amount without the dollar sign.
+
+Example from lecture:
+
+E(X) = P(win) * \$2,000,000   +  P(lose) * -$1.00  
+
+```{r hw-8}
+p_win <- 1 / 10e6
+p_lose <- 1 - p_win
+
+ev <- (p_win * 10e6) + p_lose * -5
+
+ev
+```
+
+9.
+
+In a study of 100 people, researchers tested the effectiveness of a new home laser on improving facial appearance. Researchers photographed participants’ faces before and after 4 weeks of use of the laser. An independent dermatologist compared the two photos for each participant, but was not told which was the “before” picture and which was the “after” picture. For 59 out of 100 participants, she determined that the facial skin looked better in the “after” picture than in the “before” picture.
+
+What is the probability that she would have correctly ordered 59 or more pictures if she was just guessing?
+
+Hint: use a normal approximation to the binomial. Enter as a percent, but do not include the percent sign; round to 1 decimal place.
+
+```{r hw-9}
+pbinom(58, 100, prob = 0.5, lower.tail = FALSE)
+```
+
+10.
+
+```{r hw-10}
+fifth <- qnorm(0.05)
+
+twenty_fifth <- qnorm(0.25)
+
+```
+
+11.
+
+For a particular infectious disease, 15% of non-vaccinated individuals will become infected with the disease in one year versus 5% of vaccinated individuals. Simulate a virtual randomized trial in which you vaccinate 1000 individuals with the real vaccine and 1000 individuals with a placebo vaccine and follow the groups for one year. (Hint: Generate values from random binomial functions with N=1000, p=.15 and N=1000, p=.05; then subtract). How many more infections occurred in the placebo group than in the vaccine group in this single virtual trial?
+
+```{r hw-11}
+p_placebo <- rbinom(1, size = 1000, prob = 0.15)
+p_vacc <- rbinom(1, size = 1000, prob = 0.05)
+
+p_placebo - p_vacc
+```
+
+12.
+
+Repeat the virtual trial described above 30,000 times using a do-loop (SAS) or for-loop (R). Each time, record the number of excess infections in the placebo group (the number of infections in the placebo group minus the number of infections in the vaccine group). Which of the following is the histogram that results from this simulation trial?
+
+```{r hw-12}
+n_reps <- 30000
+
+diffs <- vector("integer", length = n_reps)
+
+for (i in 1:n_reps) {
+  p_placebo <- rbinom(1, size = 1000, prob = 0.15)
+  p_vacc <- rbinom(1, size = 1000, prob = 0.05)
+  
+  diffs[[i]] <- p_placebo - p_vacc
+}
+
+hist(diffs)
+```
+
+13.
+
+```{r hw-13}
+sd(diffs)
+```
+
+
+
+
+
+
+
+
 
