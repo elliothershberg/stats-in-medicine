@@ -13,4 +13,106 @@ Notes from Unit 5: Statistical Inference
 
 ## Introduction to Statistical Inference
 
+- Goal is to make a guess about a population from a sample.
+- We can compute sample statistics from data
+- Use them to infer population parameters
+- Quantify uncertainty about these estimates
+- Sample statistic: any summary measure calculated from data
+- Population parameter: the true value/true effect in the entire population of interest
+- Two possible goals:
+  1. Estimation (confidence intervals)
+  2. Hypothesis testing (p-values)
+
+## Introduction to the Distribution of a Statistic
+
+- Statistics follow distributions
+- Distributions are defined by:
+  1. Shape (e.g. normal, T, etc.)
+  2. Mean
+  3. Standard deviation (called standard error for a statistic)
+- Distribution of a statistic is a **theoretical concept**
+  - If experiment/sampling is repeated over and over, this would form distribution of values
+- Two approaches to determining distribution:
+  1. computer simulation
+  2. mathematical theory
+
+## Distributions of some common statistics
+
+- correlation coefficients range from -1 to +1.
+- randomly sampling from a distribution to see the distribution of the mean.
+- Distribution of a sample mean in general:
+  - T-distributed
+  - Mean approaches the true mean
+  - the standard error is: $\frac{s}{\sqrt{n}}$
+- Standard error decreases with bigger sample size, and increases with greater trait variability.
+- Propertires of distribution of correlation coefficient:
+  - Shape is normal for large n, t-distributed for smaller n
+  - mean = true correlation coefficient.
+  - standard error is approximately $\frac{\sqrt{1 - r^2}}{\sqrt{n}}$
+- many statistics have similar properties
+- the distributions of ratios are right-skewed, but taking the log makes it normally distributed.
+- Summary:
+  1. many statistics are normal or t-distributed
+  2. the mean is typically the true value
+  3. the standard error has different formulas for different statistics.
+
+## Confidence Intervals (estimation)
+
+- Goal is to capture the true effect most of the time.
+- Example: a 95% confidence interval should the include the true effect about 95% of the time.
+- Can use the standard error to compute this.
+  - 95% of values fall within two standard deviation, so +/- (2 * SE).
+- Confidence intervals give:
+  - a plausible range of values for a population parameter.
+  - the precision of an estimate. (when sampling variability is high, the confidence interval is wide to reflect the uncertainty.)
+  
+## Where Does the Margin of Error Come From in Polls?
+
+- Comes from the confidence interval.
+- Proportion is related to the binomial. $\frac{X}{N}$ where X is a binomial.
+- Standard error of a proportion is: 
+
+$$\sigma_{\hat p} = \sqrt{\frac{p(1-p)}{n}}$$
+
+- for proportion, mean is the true value, and it is normally distributed.
+- An interesting result of this: p(1 - p) reaches a maximum when p = 0.5
+- Maximum width of 95% confidence interval is $2*\frac{.5}{\sqrt{N}} = \frac{1}{\sqrt{N}}$.
+
+## Hypothesis Testing (p-values)
+
+- Make a baseline assumption (null hypothesis)
+- Simulate a distribution for the test statistic
+- Compare the value given the null hypothesis to this distribution
+- The p-value is the probablity of see observed value given that the null hypothesis is true.
+- P-value = P(observation | null hypothesis)
+- Steps:
+  1. Define hypothesis (null, alternative)
+  2. Specify null distribution
+  3. Do an experiment
+  4. Calculate p-value of observed value
+  5. Reject or fail to reject the null
+- Confidence intervals give same information. If a value is outside of confidence interval, p-value is significant.
+- two-sided hypothesis test: account for values more extreme in either direction.
+- P-values mathematically:
+
+$$
+Z = \frac{effect \, size - null \, value}{standard \, error}
+$$
+
+- P-values depend on: effect size, sample size, variability.
+
+## HIV Vaccine Trial/Bayesian Inference
+
+- HIV Trial, 51 infections in vaccine group vs. 74 infections in placebo group.
+- Turns out this difference equates to a p-value of 0.04.
+- Can use Bayes rule to flip conditional probabilities.
+
+## Bayesian Statistics
+
+- In frequentist statistics, the parameter of interest is some fixed value. In Bayesian statistics the parameter is a random variable.
+- Prior distribution: expresses beliefs before data.
+- Posterior distribution: expresses beliefs after seeing data.
+- Tools for Bayesian inference:
+  - Estimation: credible interval
+  - Hypothesis testing: Bayes factors
 
