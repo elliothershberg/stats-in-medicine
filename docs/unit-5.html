@@ -436,15 +436,15 @@ results.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomelliothershbergstatsinmedicinetreec0336a9fe008a102033368d90b94443590cc6f5etargetblankc0336a9a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomelliothershbergstatsinmedicinetreee1e810af7a043d1768fb5aa370a4e68f4bdc2333targetblanke1e810aa">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/elliothershberg/stats-in-medicine/tree/c0336a9fe008a102033368d90b94443590cc6f5e" target="_blank">c0336a9</a>
+<a href="https://github.com/elliothershberg/stats-in-medicine/tree/e1e810af7a043d1768fb5aa370a4e68f4bdc2333" target="_blank">e1e810a</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomelliothershbergstatsinmedicinetreec0336a9fe008a102033368d90b94443590cc6f5etargetblankc0336a9a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomelliothershbergstatsinmedicinetreee1e810af7a043d1768fb5aa370a4e68f4bdc2333targetblanke1e810aa"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -454,7 +454,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/elliothershberg/stats-in-medicine/tree/c0336a9fe008a102033368d90b94443590cc6f5e" target="_blank">c0336a9</a>.
+<a href="https://github.com/elliothershberg/stats-in-medicine/tree/e1e810af7a043d1768fb5aa370a4e68f4bdc2333" target="_blank">e1e810a</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -523,6 +523,40 @@ Message
 Rmd
 </td>
 <td>
+<a href="https://github.com/elliothershberg/stats-in-medicine/blob/e1e810af7a043d1768fb5aa370a4e68f4bdc2333/analysis/unit-5.Rmd" target="_blank">e1e810a</a>
+</td>
+<td>
+elliothershberg
+</td>
+<td>
+2022-04-25
+</td>
+<td>
+Publish Unit 5 notes.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/elliothershberg/stats-in-medicine/4ec3381e0250fc51ee1925bc7456980292e6a12a/docs/unit-5.html" target="_blank">4ec3381</a>
+</td>
+<td>
+elliothershberg
+</td>
+<td>
+2022-04-25
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 <a href="https://github.com/elliothershberg/stats-in-medicine/blob/c0336a9fe008a102033368d90b94443590cc6f5e/analysis/unit-5.Rmd" target="_blank">c0336a9</a>
 </td>
 <td>
@@ -548,6 +582,173 @@ wflow_publish(c("analysis/index.Rmd", "analysis/unit-5.Rmd"))
 </div>
 <div id="introduction-to-statistical-inference" class="section level2">
 <h2>Introduction to Statistical Inference</h2>
+<ul>
+<li>Goal is to make a guess about a population from a sample.</li>
+<li>We can compute sample statistics from data</li>
+<li>Use them to infer population parameters</li>
+<li>Quantify uncertainty about these estimates</li>
+<li>Sample statistic: any summary measure calculated from data</li>
+<li>Population parameter: the true value/true effect in the entire
+population of interest</li>
+<li>Two possible goals:
+<ol style="list-style-type: decimal">
+<li>Estimation (confidence intervals)</li>
+<li>Hypothesis testing (p-values)</li>
+</ol></li>
+</ul>
+</div>
+<div id="introduction-to-the-distribution-of-a-statistic"
+class="section level2">
+<h2>Introduction to the Distribution of a Statistic</h2>
+<ul>
+<li>Statistics follow distributions</li>
+<li>Distributions are defined by:
+<ol style="list-style-type: decimal">
+<li>Shape (e.g. normal, T, etc.)</li>
+<li>Mean</li>
+<li>Standard deviation (called standard error for a statistic)</li>
+</ol></li>
+<li>Distribution of a statistic is a <strong>theoretical
+concept</strong>
+<ul>
+<li>If experiment/sampling is repeated over and over, this would form
+distribution of values</li>
+</ul></li>
+<li>Two approaches to determining distribution:
+<ol style="list-style-type: decimal">
+<li>computer simulation</li>
+<li>mathematical theory</li>
+</ol></li>
+</ul>
+</div>
+<div id="distributions-of-some-common-statistics"
+class="section level2">
+<h2>Distributions of some common statistics</h2>
+<ul>
+<li>correlation coefficients range from -1 to +1.</li>
+<li>randomly sampling from a distribution to see the distribution of the
+mean.</li>
+<li>Distribution of a sample mean in general:
+<ul>
+<li>T-distributed</li>
+<li>Mean approaches the true mean</li>
+<li>the standard error is: <span
+class="math inline">\(\frac{s}{\sqrt{n}}\)</span></li>
+</ul></li>
+<li>Standard error decreases with bigger sample size, and increases with
+greater trait variability.</li>
+<li>Propertires of distribution of correlation coefficient:
+<ul>
+<li>Shape is normal for large n, t-distributed for smaller n</li>
+<li>mean = true correlation coefficient.</li>
+<li>standard error is approximately <span
+class="math inline">\(\frac{\sqrt{1 - r^2}}{\sqrt{n}}\)</span></li>
+</ul></li>
+<li>many statistics have similar properties</li>
+<li>the distributions of ratios are right-skewed, but taking the log
+makes it normally distributed.</li>
+<li>Summary:
+<ol style="list-style-type: decimal">
+<li>many statistics are normal or t-distributed</li>
+<li>the mean is typically the true value</li>
+<li>the standard error has different formulas for different
+statistics.</li>
+</ol></li>
+</ul>
+</div>
+<div id="confidence-intervals-estimation" class="section level2">
+<h2>Confidence Intervals (estimation)</h2>
+<ul>
+<li>Goal is to capture the true effect most of the time.</li>
+<li>Example: a 95% confidence interval should the include the true
+effect about 95% of the time.</li>
+<li>Can use the standard error to compute this.
+<ul>
+<li>95% of values fall within two standard deviation, so +/- (2 *
+SE).</li>
+</ul></li>
+<li>Confidence intervals give:
+<ul>
+<li>a plausible range of values for a population parameter.</li>
+<li>the precision of an estimate. (when sampling variability is high,
+the confidence interval is wide to reflect the uncertainty.)</li>
+</ul></li>
+</ul>
+</div>
+<div id="where-does-the-margin-of-error-come-from-in-polls"
+class="section level2">
+<h2>Where Does the Margin of Error Come From in Polls?</h2>
+<ul>
+<li>Comes from the confidence interval.</li>
+<li>Proportion is related to the binomial. <span
+class="math inline">\(\frac{X}{N}\)</span> where X is a binomial.</li>
+<li>Standard error of a proportion is:</li>
+</ul>
+<p><span class="math display">\[\sigma_{\hat p} =
+\sqrt{\frac{p(1-p)}{n}}\]</span></p>
+<ul>
+<li>for proportion, mean is the true value, and it is normally
+distributed.</li>
+<li>An interesting result of this: p(1 - p) reaches a maximum when p =
+0.5</li>
+<li>Maximum width of 95% confidence interval is <span
+class="math inline">\(2*\frac{.5}{\sqrt{N}} =
+\frac{1}{\sqrt{N}}\)</span>.</li>
+</ul>
+</div>
+<div id="hypothesis-testing-p-values" class="section level2">
+<h2>Hypothesis Testing (p-values)</h2>
+<ul>
+<li>Make a baseline assumption (null hypothesis)</li>
+<li>Simulate a distribution for the test statistic</li>
+<li>Compare the value given the null hypothesis to this
+distribution</li>
+<li>The p-value is the probablity of see observed value given that the
+null hypothesis is true.</li>
+<li>P-value = P(observation | null hypothesis)</li>
+<li>Steps:
+<ol style="list-style-type: decimal">
+<li>Define hypothesis (null, alternative)</li>
+<li>Specify null distribution</li>
+<li>Do an experiment</li>
+<li>Calculate p-value of observed value</li>
+<li>Reject or fail to reject the null</li>
+</ol></li>
+<li>Confidence intervals give same information. If a value is outside of
+confidence interval, p-value is significant.</li>
+<li>two-sided hypothesis test: account for values more extreme in either
+direction.</li>
+<li>P-values mathematically:</li>
+</ul>
+<p><span class="math display">\[
+Z = \frac{effect \, size - null \, value}{standard \, error}
+\]</span></p>
+<ul>
+<li>P-values depend on: effect size, sample size, variability.</li>
+</ul>
+</div>
+<div id="hiv-vaccine-trialbayesian-inference" class="section level2">
+<h2>HIV Vaccine Trial/Bayesian Inference</h2>
+<ul>
+<li>HIV Trial, 51 infections in vaccine group vs. 74 infections in
+placebo group.</li>
+<li>Turns out this difference equates to a p-value of 0.04.</li>
+<li>Can use Bayes rule to flip conditional probabilities.</li>
+</ul>
+</div>
+<div id="bayesian-statistics" class="section level2">
+<h2>Bayesian Statistics</h2>
+<ul>
+<li>In frequentist statistics, the parameter of interest is some fixed
+value. In Bayesian statistics the parameter is a random variable.</li>
+<li>Prior distribution: expresses beliefs before data.</li>
+<li>Posterior distribution: expresses beliefs after seeing data.</li>
+<li>Tools for Bayesian inference:
+<ul>
+<li>Estimation: credible interval</li>
+<li>Hypothesis testing: Bayes factors</li>
+</ul></li>
+</ul>
 </div>
 
 
