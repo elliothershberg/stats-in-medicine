@@ -389,11 +389,11 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-04-25
+<strong>Last updated:</strong> 2022-05-02
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span> 0
 </p>
@@ -436,15 +436,99 @@ results.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomelliothershbergstatsinmedicinetreee1e810af7a043d1768fb5aa370a4e68f4bdc2333targetblanke1e810aa">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the
+global environment can affect the analysis in your R Markdown file in
+unknown ways. For reproduciblity it’s best to always run the code in an
+empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20220401code">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Seed:</strong>
+<code>set.seed(20220401)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20220401code"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20220401)</code> was run prior to running
+the code in the R Markdown file. Setting a seed ensures that any results
+that rely on randomness, e.g. subsampling or permutations, are
+reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Session information:</strong>
+recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package
+versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be
+confident that you successfully produced the results during this
+run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr
+project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomelliothershbergstatsinmedicinetree70775056c67653a4205affcc75301f09dacd9487targetblank7077505a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/elliothershberg/stats-in-medicine/tree/e1e810af7a043d1768fb5aa370a4e68f4bdc2333" target="_blank">e1e810a</a>
+<a href="https://github.com/elliothershberg/stats-in-medicine/tree/70775056c67653a4205affcc75301f09dacd9487" target="_blank">7077505</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomelliothershbergstatsinmedicinetreee1e810af7a043d1768fb5aa370a4e68f4bdc2333targetblanke1e810aa"
+id="strongRepositoryversionstrongahrefhttpsgithubcomelliothershbergstatsinmedicinetree70775056c67653a4205affcc75301f09dacd9487targetblank7077505a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -454,7 +538,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/elliothershberg/stats-in-medicine/tree/e1e810af7a043d1768fb5aa370a4e68f4bdc2333" target="_blank">e1e810a</a>.
+<a href="https://github.com/elliothershberg/stats-in-medicine/tree/70775056c67653a4205affcc75301f09dacd9487" target="_blank">7077505</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -518,6 +602,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/elliothershberg/stats-in-medicine/blob/70775056c67653a4205affcc75301f09dacd9487/analysis/unit-5.Rmd" target="_blank">7077505</a>
+</td>
+<td>
+elliothershberg
+</td>
+<td>
+2022-05-02
+</td>
+<td>
+Publish unit 5
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/elliothershberg/stats-in-medicine/2e1a371f83978edb381b4c612154b38fe22f2153/docs/unit-5.html" target="_blank">2e1a371</a>
+</td>
+<td>
+elliothershberg
+</td>
+<td>
+2022-04-25
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -749,6 +867,197 @@ value. In Bayesian statistics the parameter is a random variable.</li>
 <li>Hypothesis testing: Bayes factors</li>
 </ul></li>
 </ul>
+</div>
+<div id="homework" class="section level2">
+<h2>Homework</h2>
+<ol style="list-style-type: decimal">
+<li></li>
+</ol>
+<p>You measure weight changes in 10 adults who have completed a weight
+loss program. Because of the small sample size, you will need to use a T
+value rather than a Z value when building the confidence interval for
+the mean weight loss. What is the correct T value if you want to build a
+99% confidence interval?</p>
+<pre class="r"><code>qt(1 - 0.01 / 2, df = 9)</code></pre>
+<pre><code>[1] 3.249836</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li></li>
+</ol>
+<p>In a study of 100 adults who completed a weight loss program, 40 lost
+at least 5 kg. Calculate the 95% confidence interval for the true
+proportion of adults who lose at least 5 kg using this particular weight
+loss regimen. Recall that proportions are normally distributed with a
+standard error of <span
+class="math inline">\(\sqrt{\frac{p(1-p)}{n}}\)</span>. (You may use the
+observed proportion to calculate the standard error.)</p>
+<pre class="r"><code>p &lt;- 0.4
+n &lt;- 100
+
+se &lt;- sqrt((p * (1 - p) ) / n)
+
+# the z-value for a 95% confidence interval
+z &lt;- qnorm(1 - 0.05 / 2)
+
+p - z * se</code></pre>
+<pre><code>[1] 0.3039818</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li></li>
+</ol>
+<p>A study of 1000 people who were randomly assigned to receive an
+experimental vaccine (n=500) or a placebo vaccine (n=500) found that 5%
+of the vaccinated group developed the disease versus 15% of the placebo
+group. The observed difference between the groups was thus -10%; and the
+95% confidence interval was -6% to -14%. TRUE or FALSE: The reduction in
+infections in the vaccine group is statistically significant at p&lt;
+.05.</p>
+<p>I think this is true because even outside of the 95% confidence
+interval, it is a reduction from the control.</p>
+<ol start="4" style="list-style-type: decimal">
+<li></li>
+</ol>
+<p>Smoker odds ratio:</p>
+<pre class="r"><code>smoker_p &lt;- 25 / (25 + 15)
+
+smoker_odds &lt;- smoker_p / (1 - smoker_p)
+
+control_p &lt;- 75 / (75 + 85)
+
+control_odds &lt;- control_p / (1 - control_p)
+
+odds_ratio &lt;- smoker_odds / control_odds
+
+odds_ratio</code></pre>
+<pre><code>[1] 1.888889</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>ln_odds &lt;- log(odds_ratio)
+
+ln_odds</code></pre>
+<pre><code>[1] 0.6359888</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>se &lt;- sqrt(
+  (1 / 25) +
+    (1 / 15) +
+    (1 / 75) +
+    (1 / 85)
+)
+
+se</code></pre>
+<pre><code>[1] 0.3629941</code></pre>
+<pre class="r"><code>z &lt;- qnorm(1 - 0.05 / 2)
+
+print(&quot;Lower:&quot;)</code></pre>
+<pre><code>[1] &quot;Lower:&quot;</code></pre>
+<pre class="r"><code>ln_odds - z * se</code></pre>
+<pre><code>[1] -0.07546657</code></pre>
+<pre class="r"><code>print(&quot;Upper:&quot;)</code></pre>
+<pre><code>[1] &quot;Upper:&quot;</code></pre>
+<pre class="r"><code>ln_odds + z * se</code></pre>
+<pre><code>[1] 1.347444</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>print(&quot;Lower:&quot;)</code></pre>
+<pre><code>[1] &quot;Lower:&quot;</code></pre>
+<pre class="r"><code>exp(ln_odds - z * se)</code></pre>
+<pre><code>[1] 0.9273107</code></pre>
+<pre class="r"><code>print(&quot;Upper:&quot;)</code></pre>
+<pre><code>[1] &quot;Upper:&quot;</code></pre>
+<pre class="r"><code>exp(ln_odds + z * se)</code></pre>
+<pre><code>[1] 3.847579</code></pre>
+<ol start="12" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>p_data_given_heads &lt;- (0.8)^2
+
+p_data_given_tails &lt;- (0.2)^2
+
+p_data_given_fair &lt;- (0.5)^2
+
+p_total &lt;-
+  1/3 * p_data_given_heads +
+  1/3 * p_data_given_tails +
+  1/3 * p_data_given_fair
+
+# so,
+
+ans &lt;- (0.64 * 1/3) / p_total
+
+ans</code></pre>
+<pre><code>[1] 0.688172</code></pre>
+<ol start="13" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>bayes_factor &lt;-
+  p_data_given_heads /
+  (p_data_given_tails * 0.5 + p_data_given_fair * 0.5)
+
+bayes_factor</code></pre>
+<pre><code>[1] 4.413793</code></pre>
+<ol start="15" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>(1 / 0.05)^2</code></pre>
+<pre><code>[1] 400</code></pre>
+<ol start="16" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>mean_diff &lt;- 0
+for (i in 1:10000) {
+  girls &lt;- rnorm(30, 60, 10)
+  boys &lt;- rnorm(30, 60, 10)
+  mean_diff[i] &lt;- mean(girls) - mean(boys)
+}</code></pre>
+<pre class="r"><code>hist(mean_diff)</code></pre>
+<p><img src="figure/unit-5.Rmd/hw-16-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>mean(mean_diff)</code></pre>
+<pre><code>[1] 0.003364279</code></pre>
+<pre class="r"><code>sd(mean_diff)</code></pre>
+<pre><code>[1] 2.589515</code></pre>
+<pre class="r"><code>sum(mean_diff &gt; 5) / 10000</code></pre>
+<pre><code>[1] 0.0267</code></pre>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.1.1 (2021-08-10)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS Big Sur 10.16
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] workflowr_1.7.0
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.7       highr_0.9        compiler_4.1.1   pillar_1.6.4    
+ [5] bslib_0.3.1      later_1.3.0      git2r_0.29.0     jquerylib_0.1.4 
+ [9] tools_4.1.1      getPass_0.2-2    digest_0.6.29    jsonlite_1.7.2  
+[13] evaluate_0.14    tibble_3.1.6     lifecycle_1.0.1  pkgconfig_2.0.3 
+[17] rlang_0.4.12     rstudioapi_0.13  yaml_2.2.1       xfun_0.29       
+[21] fastmap_1.1.0    httr_1.4.2       stringr_1.4.0    knitr_1.37      
+[25] sass_0.4.0       fs_1.5.2         vctrs_0.3.8      rprojroot_2.0.2 
+[29] glue_1.6.0       R6_2.5.1         processx_3.5.2   fansi_0.5.0     
+[33] rmarkdown_2.11   callr_3.7.0      magrittr_2.0.1   whisker_0.4     
+[37] ps_1.6.0         promises_1.2.0.1 htmltools_0.5.2  ellipsis_0.3.2  
+[41] httpuv_1.6.5     utf8_1.2.2       stringi_1.7.6    crayon_1.4.2    </code></pre>
+</div>
 </div>
 
 
