@@ -90,5 +90,53 @@ hist(p_vals, col = "red")
 sum(p_vals < 0.05) / sim_size
 ```
 
+## Homework
+
+Simulations like the lab to test power in different scenarios.
+
+```{r unit-6-hw-sims}
+sim_power <- function(effect_size,
+                      sample_size = 60,
+                      sd = 25,
+                      sig_level = 0.05,
+                      sim_size = 1e5) {
+  p_vals <- vector(mode = "integer", length = sim_size)
+  
+  for (i in 1:sim_size) {
+    drug <- rnorm(sample_size, mean = 250 + effect_size, sd = sd)
+    control <- rnorm(sample_size, mean = 250, sd = sd)
+    p_vals[i] <- t.test(drug, control)$p.value
+  }
+  
+  sum(p_vals < sig_level) / sim_size
+}
+
+scenario_1 <- sim_power(10)
+
+print("Scenario 1:")
+scenario_1
+
+scenario_2 <- sim_power(15)
+
+print("Scenario 2:")
+scenario_2
+
+scenario_3 <- sim_power(10, sd = 15)
+
+print("Scenario 3:")
+scenario_3
+
+scenario_4 <- sim_power(10, sample_size = 150)
+
+print("Scenario 4:")
+scenario_4
+
+
+scenario_5 <- sim_power(10, sig_level = 0.01)
+
+print("Scenario 5:")
+scenario_5
+```
+
 
 
