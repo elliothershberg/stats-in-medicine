@@ -1,0 +1,94 @@
+---
+title: "unit-6"
+author: "elliothershberg"
+date: "2022-05-03"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+Notes from Unit 6: P-values (Errors, Statistical Power, Pitfalls)
+
+## Type I and Type II Errors and Statistical Power
+
+- Type I error: Reject null hypothesis, but null hypothesis is actually true.
+- Type II error: Do not reject null hypothesis, but the null hypothesis is actually false.
+- Statistical power: 1 - Type II error.
+  - Example: The probability that you will conclude that the drug works when it does.
+- Type I error is only dependent on the significance level you choose.
+- Type II error is dependent on sample size, effect size, and significance level.
+- Factors affecting power:
+  - size of the effect
+  - standard deviation of the characteristic
+  - bigger sample size
+  - significance level
+- Formulas can be derived for determining sample size necessary for studies to be powered.
+- Type I error is usually 5%, Type II error is usually 20%
+
+## P-value Pitfalls: Statistical vs. Clinical Significance
+
+- Trivial effects may achieve statistical significance if the sample size is large enough.
+- Because of this, it's important to think about the effect size and the confidence interval.
+- The rough relationship: statistical significance ~= (effect size * sample size ) / variability
+- Take home points:
+  - P-values help determine between real effects and random fluctuation. Less useful with big sample sizes where this is less of an issue.
+  - Practically ignore P-value if sample size is >10k.
+  - Pay attention to effect size and confidence interval.
+
+## P-value Pitfalls: Multiple Testing
+
+- A significance level of 0.05 means that your false positive rate for **one test** is 5%.
+- Chance gets higher with more tests.
+- Example for 18 tests, probability is $1 - (.95)^{18} = .60$
+- "If you torture your long enough they will confess to something."
+- There are a lot of types of analysis where this is a big problem.
+- things to look out for:
+  - many tests performed, few significant
+  - modest sizes
+  - inconsistent effect sizes
+- microarrays can be prone to this problem
+- There are ways to adjust for multiple testing. Bonferroni approach is a simple but conservative approach.
+
+## P-value Pitfalls: Don't Compare P-values!
+
+- Within-group effect: did group A improve compared with itself at baseline?
+- Between-group effect: did group A improve more than group B?
+- It isn't valid to just compared two within-group effects.
+
+## P-value Pitfalls: Failure to prove an effect is not proof of no effect
+
+- If you fail to reject the null hypothesis, this is not proof of no effect.
+
+## P-value Pitfalls: Correlation is not Causation
+
+- Self-explanatory.
+
+## Equivalence Testing
+
+- A non-inferiority study aims to show that a new treatment is not substantially worse than an old treatment.
+  - Null is $C - T \ge M$ where M is some minimal amount.
+- An equivalence study aims to show that the two treatments/groups differ by no more than a clinically trivial amount.
+  - Null is $|C - T| \ge M$ where M is some minimal amount.
+- Example of an equivalence result where the treatments are equivalent, but the results are significant.
+
+## Unit 6 Lab
+
+```{r unit-6-lab}
+sim_size <- 1e5
+p_vals <- vector(mode = "integer", length = sim_size)
+for (i in 1:sim_size) {
+  drug <- rnorm(50, mean = 250, sd = 25)
+  control <- rnorm(50, mean = 250, sd = 25)
+  p_vals[i] <- t.test(drug, control)$p.value
+}
+
+hist(p_vals, col = "red")
+
+# ~5% which is expected
+sum(p_vals < 0.05) / sim_size
+```
+
+
+
