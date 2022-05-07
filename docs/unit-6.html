@@ -520,15 +520,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomelliothershbergstatsinmedicinetree74c55b0e21c202e049b22786080c25988756d452targetblank74c55b0a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomelliothershbergstatsinmedicinetreeaf5238f3091f13a1b13e45c2c186bb335524b2f4targetblankaf5238fa">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/elliothershberg/stats-in-medicine/tree/74c55b0e21c202e049b22786080c25988756d452" target="_blank">74c55b0</a>
+<a href="https://github.com/elliothershberg/stats-in-medicine/tree/af5238f3091f13a1b13e45c2c186bb335524b2f4" target="_blank">af5238f</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomelliothershbergstatsinmedicinetree74c55b0e21c202e049b22786080c25988756d452targetblank74c55b0a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomelliothershbergstatsinmedicinetreeaf5238f3091f13a1b13e45c2c186bb335524b2f4targetblankaf5238fa"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -538,7 +538,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/elliothershberg/stats-in-medicine/tree/74c55b0e21c202e049b22786080c25988756d452" target="_blank">74c55b0</a>.
+<a href="https://github.com/elliothershberg/stats-in-medicine/tree/af5238f3091f13a1b13e45c2c186bb335524b2f4" target="_blank">af5238f</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -555,6 +555,7 @@ were generated:
 Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
+    Ignored:    analysis/figure/
     Ignored:    data/Unit_1_lab_manual.docx
     Ignored:    data/classdata.xlsx
     Ignored:    data/covid_data.xlsx
@@ -605,6 +606,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/elliothershberg/stats-in-medicine/blob/af5238f3091f13a1b13e45c2c186bb335524b2f4/analysis/unit-6.Rmd" target="_blank">af5238f</a>
+</td>
+<td>
+elliothershberg
+</td>
+<td>
+2022-05-07
+</td>
+<td>
+Add Unit 6 hw.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/elliothershberg/stats-in-medicine/f076345ad354a8909b84fe5c1b792b553c7a2db1/docs/unit-6.html" target="_blank">f076345</a>
+</td>
+<td>
+elliothershberg
+</td>
+<td>
+2022-05-07
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -761,9 +796,96 @@ for (i in 1:sim_size) {
 
 hist(p_vals, col = &quot;red&quot;)</code></pre>
 <p><img src="figure/unit-6.Rmd/unit-6-lab-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unit-6-lab-1">
+Past versions of unit-6-lab-1.png
+</button>
+</p>
+<div id="fig-unit-6-lab-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/elliothershberg/stats-in-medicine/blob/f076345ad354a8909b84fe5c1b792b553c7a2db1/docs/figure/unit-6.Rmd/unit-6-lab-1.png" target="_blank">f076345</a>
+</td>
+<td>
+elliothershberg
+</td>
+<td>
+2022-05-07
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code># ~5% which is expected
 sum(p_vals &lt; 0.05) / sim_size</code></pre>
 <pre><code>[1] 0.04892</code></pre>
+</div>
+<div id="homework" class="section level2">
+<h2>Homework</h2>
+<p>Simulations like the lab to test power in different scenarios.</p>
+<pre class="r"><code>sim_power &lt;- function(effect_size,
+                      sample_size = 60,
+                      sd = 25,
+                      sig_level = 0.05,
+                      sim_size = 1e5) {
+  p_vals &lt;- vector(mode = &quot;integer&quot;, length = sim_size)
+  
+  for (i in 1:sim_size) {
+    drug &lt;- rnorm(sample_size, mean = 250 + effect_size, sd = sd)
+    control &lt;- rnorm(sample_size, mean = 250, sd = sd)
+    p_vals[i] &lt;- t.test(drug, control)$p.value
+  }
+  
+  sum(p_vals &lt; sig_level) / sim_size
+}
+
+scenario_1 &lt;- sim_power(10)
+
+print(&quot;Scenario 1:&quot;)</code></pre>
+<pre><code>[1] &quot;Scenario 1:&quot;</code></pre>
+<pre class="r"><code>scenario_1</code></pre>
+<pre><code>[1] 0.5854</code></pre>
+<pre class="r"><code>scenario_2 &lt;- sim_power(15)
+
+print(&quot;Scenario 2:&quot;)</code></pre>
+<pre><code>[1] &quot;Scenario 2:&quot;</code></pre>
+<pre class="r"><code>scenario_2</code></pre>
+<pre><code>[1] 0.90157</code></pre>
+<pre class="r"><code>scenario_3 &lt;- sim_power(10, sd = 15)
+
+print(&quot;Scenario 3:&quot;)</code></pre>
+<pre><code>[1] &quot;Scenario 3:&quot;</code></pre>
+<pre class="r"><code>scenario_3</code></pre>
+<pre><code>[1] 0.95239</code></pre>
+<pre class="r"><code>scenario_4 &lt;- sim_power(10, sample_size = 150)
+
+print(&quot;Scenario 4:&quot;)</code></pre>
+<pre><code>[1] &quot;Scenario 4:&quot;</code></pre>
+<pre class="r"><code>scenario_4</code></pre>
+<pre><code>[1] 0.931</code></pre>
+<pre class="r"><code>scenario_5 &lt;- sim_power(10, sig_level = 0.01)
+
+print(&quot;Scenario 5:&quot;)</code></pre>
+<pre><code>[1] &quot;Scenario 5:&quot;</code></pre>
+<pre class="r"><code>scenario_5</code></pre>
+<pre><code>[1] 0.33852</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
