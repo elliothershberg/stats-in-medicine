@@ -15,3 +15,9 @@ EPI 258: Statistics in Medicine
 - [Unit 3](unit-3.html)
 - [Unit 4](unit-4.html)
 - [Unit 5](unit-5.html)
+- [Unit 6](unit-6.html)
+
+
+Misc:
+
+- [Unit 7 class exercise](unit-7-class.html)
