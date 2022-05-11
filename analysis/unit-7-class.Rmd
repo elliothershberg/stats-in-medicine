@@ -20,10 +20,6 @@ df <- read_excel("data/Unit7Data.xlsx")
 
 1.
 
-```{r look}
-View(df)
-```
-
 ```{r}
 # 1 = fracture
 sum(df$fracture == 1)
