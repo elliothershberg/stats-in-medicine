@@ -1,0 +1,156 @@
+---
+title: "unit-7"
+author: "elliothershberg"
+date: "2022-05-15"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+Notes for Unit 7: Statistical Tests
+
+## Introduction to Correlated Data
+
+- Correlated observations arise when pairs or clusters of observations are related, and therefore more similar
+- Between-person comparisons
+- within-person comparisons
+
+## Testing Assumptions for Continous Variables
+
+- Normality assumption: The outcome variable is normally distributed within groups.
+- Homogeneity of variances: The variance of the outcome is the same in the different groups.
+- Check for normality with plots or descriptive stats, some tests exist too (ex. Kolmogorov Smirnov)
+- normal probability plot
+- Same story for testing for variance
+- Linear models are robust to these assumptions
+  - statistics like the mean are normally distributed (Central Limit Theorem)
+
+## Comparing the means between 2 groups
+
+- Var(X - Y) = Var(X) + Var(Y)
+- Standard error is the square of that
+- pooled variance (estimating variance using data from both groups) makes the estimation more precise
+- t-test
+- paired t-test
+
+## Comparing the means between 2 or more groups
+
+- ANOVA
+- Same assumptions as t-test
+- Look at the ratio of the between-group variance and the within-group variance (this is F-statistic)
+- This enables straightforward comparisons between more than 2 groups.
+- Sometimes start with ANOVA, and then afterwards find out which group differs.
+- repeated measures ANOVA
+
+## Non-parametric alternatives
+
+- Not estimating any parameters
+- Examples are Wilcoxon signed-rank test, wilcoxon rank-sum test, Kruskal-Wallis test, Spearman rank correlation coefficient
+
+## Comparing proportions between two groups
+
+- shape is Z-distributed
+- standard error formula
+- difference in proportions Z-test
+- McNemar's exact test
+
+## Comparing proportions between more than two groups
+
+- Chi-squared test
+  - Compute a 2x2 table of expected values. Compute differences relative to observed.
+- Chi-square distribution
+- Assumption is variables are independent. So, computing an expected cell count is P(A) * P(B) * N
+
+## Tests for comparing counts and time-to-event data
+
+- Kaplan-Meier curves: the empirical probability of surviving past certain times in the sample, taking into account censoring.
+- Log-rank test for comparing kaplan-meier curves.
+
+## Unit 7 lab
+
+```{r unit-7-lab}
+library(readxl)
+library(tidyverse)
+
+df <- read_excel("data/classdata.xlsx") %>%
+  mutate(book_smart = as.factor(IsBookSmart))
+
+ggplot(df, aes(x = book_smart, y = homework)) +
+  geom_boxplot()
+
+# shapiro.test
+
+t.test(homework ~ IsBookSmart, data = df)
+
+anova <- aov(homework ~ IsBookSmart, data = df)
+
+summary(anova)
+
+# wilcox.test
+```
+
+## Unit 7 Homework
+
+12.
+
+```{r hw-12}
+library(readxl)
+library(tidyverse)
+library(beeswarm)
+
+classdata <- read_excel("data/classdata.xlsx")
+
+classdata <- classdata %>%
+  mutate(highex = df$exercise > 3.25, 1, 0)
+
+boxplot(
+  wakeup ~ highex,
+  data = classdata,
+  cex.lab = 1.5,
+  cex.axis = 1.5,
+  xlab = 'Street Smart=0, Book Smart=1',
+  ylab = 'Homework hrs per week'
+)
+
+beeswarm(
+  wakeup ~ highex,
+  data = classdata,
+  col = rainbow(8),
+  cex = 2,
+  pch = 16,
+  add = TRUE
+)
+
+```
+
+13.
+
+```{r hw-13}
+mean(classdata[classdata$highex == 0,]$wakeup) - mean(classdata[classdata$highex == 1,]$wakeup)
+```
+
+14.
+
+```{r hw-14}
+t.test(wakeup ~ highex, data = classdata, var.equal = TRUE)
+```
+
+15.
+
+```{r hw-15}
+wilcox.test(x = classdata[classdata$highex == 0, ]$wakeup,
+            y = classdata[classdata$highex == 1, ]$wakeup)
+
+```
+
+
+
+
+
+
+
+
+
+
