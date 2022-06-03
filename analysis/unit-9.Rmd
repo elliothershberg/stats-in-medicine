@@ -1,0 +1,105 @@
+---
+title: "unit-9"
+author: "elliothershberg"
+date: "2022-05-26"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+Notes for Unit 9: Principles of Regression Analysis
+
+## Explanatory versus predictive modeling
+
+- Different goals of regression modeling:
+  1. Descriptive
+  2. Predictive
+  3. Explanatory
+
+## Testing for confounders
+
+- Rule of thumb: if a potential confounder changes the beta coefficient between the predictor of interest and the outcome variable by more than 10%, then it is considered a confounder.
+
+## Residual confounding
+
+- You cannot wipe out confounding simply by adjusting for variables in regression (there is always some measurement error).
+- Residual confounding can plausibly generate spurious relative risks in the range of 0.6 to 1.6.
+- Residual confounding can also obscure relationships
+
+## Interactions
+
+- Interaction is when the effect size is significantly different in different subgroups.
+- Interactions are encoded as the product between terms in a regression model.
+- Article: Open access increases citation impact for higher quality research
+- "The effect is significant in 1 subgroup but not another" is not proof of interaction.
+
+Misc: my current estimate of points before final:
+
+```{r points}
+# quizzes, homework, midterm 1, midterm 2
+10 + (0.9 * 30) + (0.7 * 15) + (0.85 * 15)
+```
+
+Final is 30 points. So probably need 20/30 or greater.
+
+## Regression worries
+
+- Data can have nonlinear relationships
+  - can add a quadratic term to models
+- There can be influential data points that skew models
+- P-hacking
+  - tuning the form of the predictor
+  - finding exact combination of confounders
+  - "excluding" outliers
+  - looking through subgroups
+  - etc.
+- Overfitting
+  - rule of thumb: you need at least 10 subjects for each predictor variable in the regression model
+
+## Unit 9 R lab
+
+```{r unit-9-lab}
+library(tidyverse)
+library(readxl)
+
+class_data <- read_excel("data/classdata.xlsx")
+class_data$IsBookSmart <- as.factor(class_data$IsBookSmart)
+
+class_data_filtered <- class_data %>%
+  filter(!is.na(IsBookSmart))
+
+ggplot(class_data_filtered, aes(x = politics, y = obama, color = IsBookSmart)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+
+model <- glm(obama ~ IsBookSmart + politics + IsBookSmart * politics,
+             data = class_data)
+
+summary(model)
+```
+
+## Homework
+
+```{r unit-9-hw}
+# 1
+199.0439648 + (0.1239354 * 25) + -97.6187429 + (25 * 6.7372626)
+
+# 13
+class_data$varsity <- as.factor(class_data$varsity)
+ggplot(class_data, aes(x = alcohol, y = optimism, color = varsity)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+
+model <- glm(optimism ~ alcohol + varsity + optimism * varsity,
+             data = class_data)
+
+summary(model)
+```
+
+
+
+
+
+

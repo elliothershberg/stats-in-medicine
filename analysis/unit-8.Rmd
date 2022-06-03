@@ -1,0 +1,113 @@
+---
+title: "unit-8"
+author: "elliothershberg"
+date: "2022-05-22"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+Notes for Unit 8: Linear Regression
+
+## Covariance and Correlation
+
+- Covariance is how much two different traits vary together.
+
+$$
+Cov(x,y) = \frac{\sum_{i=1}^{n}(x_i - \bar X)(y_i - \bar Y)}{n - 1}
+$$
+
+- Relationship with variance: Var(x) = Cov(x, x)
+- Correlation measures the strength of the linear relationship between two variables.
+  - Ranges between -1 and 1
+- Distribution of a correlation coefficient:
+  - T-disributed with n = 2 degrees of freedom
+  - mean = true correlation coefficient
+  - standard error: $\sqrt{\frac{1 - r^2}{n - 2}}$
+- Spearman's rank correlation uses ranks instead of raw variables
+
+## Simple Linear Regression
+
+- Predict response variable based on explanatory variables
+- find line that best fits the data
+- Expected value of y at a given level of x: $E(y_i | x_i) = \alpha + \beta x_i$
+- predicted value: $\hat y_i = \alpha + \beta x_i + error_i$
+- Assumptions:
+  - relationship is linear
+  - Y is distributed normally at each value of X
+  - homogeneity of variances
+  - observations are independent
+- Least squares estimation is used to find the "best fit" line.
+- Formulas:
+  - Slope (beta coefficient): $\hat \beta = \frac{Cov(x,y)}{Var(x)}$
+  - Intercept: $\hat \alpha = \bar y - \hat \beta \bar x$
+
+## Residual Analysis
+
+- residual = observed - predicted
+- residual plots should show no pattern if the assumptions of regression are met.
+- can check normality of residuals with a histogram.
+- 
+  
+## Multiple linear regression
+
+- Models with more than one predictor
+- adjusting for confounding variable by adding it is a a predictor in the model
+
+## Categorical predictors in regression
+
+- treat binary variables as 0 or 1.
+- A t-test is actually just linear regression.
+  - Same story for ANOVA, etc.
+  - This is useful because you can use regression to adjust for confounding factors.
+- Dummy coding to create categorical variables.
+
+## Unit 8 lab
+
+```{r unit-8-lab}
+library(readxl)
+library(tidyverse)
+
+classdata <- read_excel("data/classdata.xlsx")
+
+ggplot(classdata, aes(x = bushjr, y = obama)) +
+  geom_point() +
+  geom_smooth()
+
+cor.test(classdata$bushjr, classdata$obama)
+
+model <- glm(obama ~ bushjr, data = classdata)
+
+summary(model)
+
+# plot(model)
+
+hist(residuals(model))
+
+shapiro.test(residuals(model))
+
+model_2 <- glm(obama ~ bushjr + politics, data = classdata)
+summary(model_2)
+```
+
+## Homework
+
+```{r hw}
+ggplot(classdata, aes(x = bushsr, y = bushjr)) +
+  geom_point() +
+  geom_smooth()
+
+cor.test(classdata$bushsr, classdata$bushjr)
+
+model <- glm(bushjr ~ bushsr, data = classdata)
+summary(model)
+
+model_2 <- glm(bushjr ~ bushsr + politics, data = classdata)
+summary(model_2)
+```
+
+
+
+

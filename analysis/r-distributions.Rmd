@@ -1,0 +1,53 @@
+---
+title: "r-distributions"
+author: "elliothershberg"
+date: "2022-05-09"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+Some misc notes on using the functions for probability distributions in R.
+
+## Function types
+
+For any distribution, there are five function types:
+
+- d: The probability density function
+- p: The probability distribution function
+- q: the quantile function
+- r: random generation from the distribution
+
+For example, dnorm is the density function for the normal distribution.
+
+## Probability distribution usage
+
+the pnorm function can return the area associated with a Z score.
+
+```{r p-dist-usage}
+# Z score of -1.66
+pnorm(-1.66)
+```
+
+## Quantile usage
+
+Opposite to the distribution, the quantile function can give a Z score for a certain area.
+
+```{r}
+# 25th percentile
+qnorm(1 - 0.25)
+```
+
+
+## Binomial function
+
+Determining probability of 0 out of 4 trials with 0.25 probability each:
+
+```{r binom-examples}
+dbinom(0, size = 4, prob = 0.25)
+```
+
+
+
